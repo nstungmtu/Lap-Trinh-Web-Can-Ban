@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors</title>
+    <style>
+        .class-selector, #id-selector{
+            color: blue;
+        }
+        #descendant-selector p{
+            color: blue;
+        }
+        #child-selector > span{
+            color: blue;
+        }
+        #adjacent-sibling-selector p.first-p + p{
+            color: blue;
+        }
+        /* Sử dụng dấu * để chọn tất cả phần tử  */
+        #general-sibling-selector p.second-p ~ *{
+            color: blue;
+        }
+        td, th{
+            padding: 5px;
+        }
+        tbody tr:nth-child(odd){
+            background-color: aliceblue;
+        }
+        /* tbody tr:not(:first-child){
+            color: blue;
+        } */
+    </style>
+</head>
+<body>
+    <article>
+        <h1>CSS Selector</h1>
+        <p>CSS Selector được dùng để định vị các phần tử cần áp dụng style</p>
+    </article>
+    <hr>
+    <article>
+        <h1>Selector đơn giản</h1>
+        <p>Sử dụng tagname, class, id của phần tử</p>
+        <!--Ví dụ 1-->
+        <hr width="50" align="left">
+        <h4>Ví dụ</h4>
+        <pre>
+            .class-selector, #id-selector{
+                color: blue;
+            }
+        </pre>
+        <div id="tagname-selector">
+            <span class="class-selector">Tôi được định dạng theo class của tôi</span><br>
+            <p>Tôi chỉ đứng đây để làm nền thôi</p>
+            <h5 id="id-selector">Tôi được định dạng theo id của tôi</h5>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h1>Selector tổ hợp</h1>
+        <p>Sử dụng các toán tử để lọc các phần tử trong cùng tổ hợp.</p>
+        <ul>
+            <li>Khoảng trắng: chọn tất cả phần tử hậu duệ bên trong (con, cháu, chắt...)</li>
+            <li>&gt;: chọn tất cả phần tử con</li>
+            <li>+: chọn phần tử là em liền sau (cùng cha, chỉ đến một phần tử)</li>
+            <li>~: chọn tất cả phần tử là em phía sau (cùng cha, chỉ đến nhiều phần tử)</li>
+        </ul>
+        <!--Ví dụ 1-->
+        <hr width="50" align="left">
+        <h4>Ví dụ 1:</h4>
+        <pre>
+            div#descendant-selector p{
+                color: blue;
+            }
+        </pre>
+        <div id="descendant-selector">
+            <p>
+                _ Con 1
+                <br> <span>&emsp;_Cháu 1.1</span>
+                <br><span>&emsp;_Cháu 1.2</span>
+            </p>
+            <p>
+                _ Con 2
+                <br><span>&emsp;_Cháu 2.1</span>
+                <br><span>&emsp;_Cháu 2.2</span>
+            </p>
+        </div>
+        
+        <!--Ví dụ 2-->
+        <hr width="50" align="left">
+        <h4>Ví dụ 2</h4>
+        <pre>
+            div#child-selector > span{
+                color: blue;
+            }
+        </pre>
+        <div id="child-selector">
+            <span>_ Tôi là con của div và có tên trong danh sách kế thừa nên được thừa kế style từ cha của tôi</span>
+            <p>
+                _ Tôi cũng là con của div nhưng không có tên trong danh sách kế thừa
+                <br><span>&emsp;_ Tôi trùng tên với chú của tôi nhưng không được kế thừa</span>
+            </p>
+        </div>
+
+        <!--Ví dụ 3-->
+        <hr width="50" align="left">
+        <h4>Ví dụ 3</h4>
+        <pre></pre>
+        <div id="adjacent-sibling-selector">
+            <p class="first-p">
+                _ Con 1
+                <br> <span>&emsp;_Cháu 1.1</span>
+                <br><span>&emsp;_Cháu 1.2</span>
+            </p>
+            <p>
+                _ Con 2
+                <br><span>&emsp;_Cháu 2.1</span>
+                <br><span>&emsp;_Cháu 2.2</span>
+            </p>
+            <p>
+                _ Con 3
+                <br><span>&emsp;_Cháu 3.1</span>
+                <br><span>&emsp;_Cháu 3.2</span>
+            </p>
+        </div>
+
+        <!--Ví dụ 4-->
+        <hr width="50" align="left">
+        <h4>Ví dụ 4</h4>
+        <pre></pre>
+        <div id="general-sibling-selector">
+            <p class="first-p">
+                _ Con 1
+                <br> <span>&emsp;_Cháu 1.1</span>
+                <br><span>&emsp;_Cháu 1.2</span>
+            </p>
+            <p class="second-p">
+                _ Con 2
+                <br> <span>&emsp;_Cháu 1.1</span>
+                <br><span>&emsp;_Cháu 1.2</span>
+            </p>
+            <p>
+                _ Con 3
+                <br><span>&emsp;_Cháu 2.1</span>
+                <br><span>&emsp;_Cháu 2.2</span>
+            </p>
+            <div>
+                _ Con 4
+                <br><span>&emsp;_Cháu 3.1</span>
+                <br><span>&emsp;_Cháu 3.2</span>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h1>Pseudo class selector</h1>
+        <p>Selector dựa trên trạng thái hoặc vị trí của phần tử</p>
+        <p>Cú pháp:</p>
+        <pre>
+            selector:pseudo-class {
+                property: value;
+            }
+        </pre>
+        <table border="1px solid" cellspacing="0">
+            <tr>
+                <th>Selector</th>
+                <th>Ví dụ</th>
+                <th>Giải thích</th>
+            </tr>
+            <tr>
+                <td>:root</td>
+                <td>:root</td>
+                <td>Chọn phần tử gốc của tài liệu (phần tử HTML)</td>
+            </tr>
+            <tr>
+                <td>:link</td>
+                <td>a:link</td>
+                <td>Liên kết chưa được truy cập</td>
+            </tr>
+            <tr>
+                <td>:visited</td>
+                <td>a:visited</td>
+                <td>Liên kết đã được truy cập</td>
+            </tr>
+            <tr>
+                <td>:hover</td>
+                <td>button:hover</td>
+                <td>Nút khi được rê chuột vào</td>
+            </tr>
+            <tr>
+                <td>:focus</td>
+                <td>input:focus</td>
+                <td>Khi con trỏ nhập liệu được đưa về ô nhập</td>
+            </tr>
+            <tr>
+                <td>:active</td>
+                <td>button:active</td>
+                <td>Nút được nhấn chuột vào</td>
+            </tr>
+            <tr>
+                <td>:enable</td>
+                <td>input:enable</td>
+                <td>Chọn tất cả các &lt;input&gt; đang hiệu lực</td>
+            </tr>
+            <tr>
+                <td>:disable</td>
+                <td>input:disable</td>
+                <td>Chọn tất cả các &lt;input&gt; bị vô hiệu hóa</td>
+            </tr>
+            <tr>
+                <td>:empty</td>
+                <td>div:empty</td>
+                <td>Chọn tất cả &lt;div&gt; không có nội dung bên trong</td>
+            </tr>
+            <tr>
+                <td>:first-child</td>
+                <td>p:first-child</td>
+                <td>Chọn tất cả &lt;p&gt; là phần tử con đầu tiên của phần tử cấp cha của nó</td>
+            </tr>
+            <tr>
+                <td>:first-of-type</td>
+                <td>span:first-of-type</td>
+                <td>Chọn tất cả &lt;span&gt; là phần tử &lt;span&gt; đầu tiên trong anh em ruột của nó</td>
+            </tr>
+            <tr>
+                <td>:last-child</td>
+                <td>p:last-child</td>
+                <td>Chọn tất cả &lt;p&gt; là phần tử con cuối cùng của phần tử cấp cha của nó</td>
+            </tr>
+            <tr>
+                <td>:last-of-type</td>
+                <td>span:first-of-type</td>
+                <td>Chọn tất cả &lt;span&gt; là phần tử &lt;span&gt; cuối cùng trong anh em ruột của nó</td>
+            </tr>
+            <tr>
+                <td rowspan="4">:nth-child(n)</td>
+                <td>p:nth-child(3)</td>
+                <td>Chọn tất cả &lt;p&gt; là phần tử thứ 3 trong anh em ruột của nó</td>
+            </tr>
+            <tr>
+                <td>p:nth-child(odd)</td>
+                <td>Chọn tất cả &lt;p&gt; là phần tử có thứ tự lẻ trong anh em ruột của nó (phần tử đầu tiên có thứ tự là 1)</td>
+            </tr>
+            <tr>
+                <td>p:nth-child(even)</td>
+                <td>Chọn tất cả &lt;p&gt; là phần tử có thứ tự chẵn trong anh em ruột của nó</td>
+            </tr>
+            <tr>
+                <td>p:nth-child(3n+1)</td>
+                <td>Chọn tất cả &lt;p&gt; là phần tử có thứ tự 4, 7, 10, ... trong anh em ruột của nó</td>
+            </tr>
+            <tr>
+                <td>:only-child</td>
+                <td>p:only-child</td>
+                <td>Chọn tất cả &lt;p&gt; là đứa con duy nhất của cha của nó</td>
+            </tr>
+            <tr>
+                <td>:only-of-type</td>
+                <td>p:only-of-type</td>
+                <td>Chọn tất cả &lt;p&gt; là phần tử &lt;p&gt; duy nhất trong anh em ruột của nó</td>
+            </tr>
+            <tr>
+                <td>:valid</td>
+                <td>input:valid</td>
+                <td>Chọn tất cả &lt;input&gt; được kiểm tra dữ liệu là hợp lệ</td>
+            </tr>
+            <tr>
+                <td>:invalid</td>
+                <td>input:invalid</td>
+                <td>Chọn tất cả &lt;input&gt; được kiểm tra dữ liệu là không hợp lệ</td>
+            </tr>
+            <tr>
+                <td>:required</td>
+                <td>input:required</td>
+                <td>Chọn tất cả &lt;input&gt; có thuộc tính "required"</td>
+            </tr>
+            <tr>
+                <td>:optional</td>
+                <td>input:optional</td>
+                <td>Chọn tất cả &lt;input&gt; không có thuộc tính "required"</td>
+            </tr>
+            <tr>
+                <td>:read-only</td>
+                <td>input:read-only</td>
+                <td>Chọn tất cả &lt;input&gt; có thuộc tính "readonly"</td>
+            </tr>
+            <tr>
+                <td>:read-write</td>
+                <td>input:read-only</td>
+                <td>Chọn tất cả &lt;input&gt; không có thuộc tính "readonly"</td>
+            </tr>
+            <tr>
+                <td>:out-of-range</td>
+                <td>input:out-of-range</td>
+                <td>Chọn tất cả &lt;input&gt; có giá trị nằm ngoài khoảng cho phép</td>
+            </tr>
+            <tr>
+                <td>:not(selector)</td>
+                <td>tr:not(:last-child)</td>
+                <td>Chọn tất cả &lt;tr&gt; không phải là dòng cuối cùng trong bảng</td>
+            </tr>
+        </table>
+    </article>
+    <article>
+        <h1>CSS Pseudo Elements</h1>
+        <table border="1px solid" cellspacing="0">
+            <tr>
+                <th>Selector</th>
+                <th>Ví dụ</th>
+                <th>Giải thích</th>
+            </tr>
+            <tr>
+                <td>::before</td>
+                <td>p::before</td>
+                <td>Chèn một phần tử phía trước mỗi &lt;p&gt;</td>
+            </tr>
+            <tr>
+                <td>::after</td>
+                <td>p::after</td>
+                <td>Chèn một phần tử phía sau mỗi &lt;p&gt;
+                    <br> Phần từ ::before và ::after chỉ hoạt động với các phần tử là vật chứa, không hoạt động với input.
+                </td>
+            </tr>
+            <tr>
+                <td>::first-letter</td>
+                <td>p::first-letter</td>
+                <td>Chọn ký tự đầu tiên của mỗi &lt;p&gt;</td>
+            </tr>
+            <tr>
+                <td>::first-line</td>
+                <td>p::first-line</td>
+                <td>Chọn dòng đầu tiên của mỗi &lt;p&gt;</td>
+            </tr>
+            <tr>
+                <td>::marker</td>
+                <td>::marker</td>
+                <td>Chọn phần tử đánh dấu của mỗi mục trong danh sách &lt;p&gt;</td>
+            </tr>
+            <tr>
+                <td>::selection</td>
+                <td>p::selection</td>
+                <td>Chọn phần nội dung được quét chọn bởi người dùng</td>
+            </tr>
+            <tr>
+                <td>::placeholder</td>
+                <td>p::placeholder</td>
+                <td>Chọn phần gợi ý nhập liệu của <code>input</code></td>
+            </tr>
+        </table>
+    </article>
+    <hr>
+    <a href="08_CSS_Styles.html">Bài trước</a>|<a href="10_CSS_Box_Model.html">Bài tiếp theo</a>
+</body>
+</html>

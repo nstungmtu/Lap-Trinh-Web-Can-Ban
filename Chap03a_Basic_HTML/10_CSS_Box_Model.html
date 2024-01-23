@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Box Model</title>
+    <style>
+        .element-parent{
+            background-color: bisque;
+            /* overflow: auto; */
+        }
+        .element{
+            height: 100px;
+            width: 200px;
+            margin: 40px;
+            padding: 10px;
+            border: 10px solid hsl(189, 100%, 52%);
+            background-color: darkseagreen;
+            display: inline-block;
+            vertical-align: top;
+            /* box-sizing: border-box; */
+        }
+        .element.block{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Box-Model</h1>
+    <figure>
+        <img src="../sample_media/Box-Model.png" alt="Error" width="500">
+    </figure>
+    <p>Về mặt thiết kế, ta xem mỗi phần tử HTML riêng lẻ được chứa trong một "chiếc hộp". Chiếc hộp này có nhiều lớp, theo thứ tự từ ngoài vào bao gồm:</p>
+    <ul>
+        <li>Margin: Khoảng cách lề. Đây là khoảng không gian trắng (không gian âm theo nguyên lý thiết kế đồ họa), kích thước của lề được tính từ "vỏ hộp" đến viền.</li>
+        <li>Border: Viền của phần tử. Mép ngoài của viền là giới hạn để tính kích thước phần tử. Tọa độ của phần tử được tính tại điểm trên cùng bên trái của viền.</li>
+        <li>Padding: Không gian đệm tạo khoảng cách giữa viền với nội dung. Khác với Margin, phần không gian đệm có thể chứa các đối tượng đồ họa thuộc lớp nền của phần tử</li>
+        <li>Nội dung của phần tử. Mặc định, thuộc tính width và height của phần tử là kích thước của phần này. Nếu thuộc tính box-sizing được đặt thành border-box, thuộc tính width và height của phần tử sẽ được tính từ mép ngoài viền của phần tử (kích thước phần nội dung sẽ nhỏ hơn ban đầu).</li>
+    </ul>
+    <h4>Ví dụ</h4>
+    <div class="element-parent">
+        <div class="element">
+            Các phần tử có thuộc tính display:inline-block xuất hiện cùng nhau trên cùng 1 dòng.
+        </div>
+        <div class="element">
+            a
+        </div>
+        <div class="element">
+            và tự động xuống dòng (không tạo dòng mới) khi hết không gian chiều ngang (line wrapping)
+        </div>
+        <div class="element">
+            Amet excepteur excepteur fugiat exercitation sint sint aliqua minim cupidatat.
+        </div>
+    </div>
+    <div class="element-parent">
+        <div class="element block">
+            Phần tử có thuộc tính display:block luôn xuất hiện ở một dòng mới. Lề trên và lề dưới của nó sẽ bị nhập vào lề trên và lề dưới của các phần tử liền kề.
+        </div>
+        <div class="element block">
+            Khoảng cách lề giữa 2 phần tử sẽ bằng khoảng cách lề lớn nhất trong 2 phần tử đó.
+        </div>
+    </div>
+    <div class="element-parent">
+        <div class="element block">
+            Nội dung của phần tử
+        </div>
+    </div>
+    <div class="element-parent">
+        <div class="element block" style="margin-top: 80px;">
+            Nội dung của phần tử
+        </div>
+    </div>
+    <hr>
+    <a href="09_CSS_Selectors.html">Bài trước</a>|<a href="11_CSS_Position.html">Bài tiếp theo</a>
+</body>
+</html>

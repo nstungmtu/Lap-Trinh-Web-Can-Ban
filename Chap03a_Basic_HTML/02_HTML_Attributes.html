@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Thuộc tính của các phần tử HTML</h1>
+    <ul>
+        <li>Tất cả các phần tử HTML có thể có các thuộc tính</li>
+        <li>Thuộc tính cung cấp thêm thông tin về các phần tử</li>
+        <li>Các thuộc tính luôn được chỉ định trong thẻ bắt đầu</li>
+        <li>Các thuộc tính thường có các cặp tên/giá trị như: name="value"<br>(một số thuộc tính chỉ cần khai báo tên thuộc tính, không cần khai báo giá trị)</li>
+        <li>Một phần tử có thể có hoặc không có thuộc tính bắt buộc.</li>
+        <li>Một phần tử có thể được khai báo nhiều thuộc tinh</li>
+    </ul>
+    <hr>
+    <article>
+        <h1>Thuộc tính id, class, name</h1>
+        <p>Thuộc tính id: mã định danh của của một phần tử trong một tài liệu HTML. Mã định danh là duy nhất trong một tài liệu HTML, không được phép có 2 phần tử có cùng id trong một tài liệu HTML.</p>
+        <p>Thuộc tính name: tên của một input trong Form, thường là duy nhất trong một Form.</p>
+        <p>Thuộc tính class: tên nhóm, thường dùng để gom nhóm các phần tử nhằm tiện lợi cho việc định dạng bằng css hoặc truy xuất từ Javascript</p>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính src, alt</h1>
+        <p>Thuộc tính <b>src</b> Chỉ định đường dẫn đến tập tin hình ảnh, âm thanh, video...</p>
+        <p>Thuộc tính <b>alt="text"</b> hiển thị thông báo trường hợp không tải được tệp hình ảnh</p>
+        <img alt="Không tim thấy tập tin" src="../sample_media/bird-thumbnail.jpg" width="100">
+        <audio controls autoplay="false">
+            <source src="../sample_media/corporate-music-zone-team-work.mp3" type="audio/mpeg">
+            Trình duyệt không hỗ trợ tệp âm thanh
+        </audio>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính width và height</h1>
+        <p>Chỉ định kích thước hiển thị của phần tử</p>
+        <video width="320" height="auto" controls>
+            <source src="../sample_media/HTML5.mp4" type="video/mp4">
+            Trình duyệt không hỗ trợ video
+        </video>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính title</h1>
+        <p>Hiển thị một tooltip khi rê chuột vào phần tử (title="text")</p>
+        <button title="Thử click vào tôi xem sao!">Try hover me!</button>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính style</h1>
+        <p>Khai báo kiểu cho phần tử bằng CSS (inline style)</p>
+        <p style="color: red;">Đoạn này chữ màu đỏ</p>
+        <p style="color: blue;">Đoạn này chữ màu xanh</p>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính popover</h1>
+        <p>Thuộc tính popover chỉ định rằng phần tử sẽ trờ thành một popover</p>
+        <p>Một popover sẽ không hiển thị cho đến khi được kích hoạt từ một phần tử khác. Phần tử dùng đề kích hoạt phần tử popover sẽ được khai báo thuộc tính popovertarget</p>
+        <!--Ví dụ-->
+        <button popovertarget="popover-element">Bật cửa sổ Popover</button>
+        <div popover id="popover-element" style="background-color: bisque;">
+            <h3>Xin chào!</h3>
+            <p>Hôm nay bạn cảm thấy thế nào?</p>
+            <button popovertarget="popover-element" popovertargetaction="hide">Đóng</button>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính inert</h1>
+        <p>Khóa thao tác người dùng đối với phần tử</p>
+        <form inert>
+            <label for="uname">Tên của bạn: </label>
+            <input type="text" name="uname" value="Hỏi lơi thôi, khỏi trả lời!">
+            <button onclick="alert('Bạn click vào được à?')">Không click vào được đâu!</button>
+        </form>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính hidden</h1>
+        <p>Ẩn phần tử khỏi nội dung hiển thị</p>
+        <p hidden>Đừng cho ai thấy tôi đang ở đây</p>
+        <p>Bạn có nhìn thấy anh bạn phía dưới trên tôi không? Đùa thôi, anh ta trốn rồi!</p>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính accesskey</h1>
+        <p>Phím tắt để truy xuất hoặc kích hoạt đối tượng</p>
+        <button accesskey="s" onclick="alert('Bạn đã click vào tôi!')">Nhấn <kbd>Alt+s</kbd> để kích hoạt tôi</button>
+    </article>
+    <hr>
+    <article>
+        <h1>Thuộc tính translate</h1>
+        <p>Chỉ định cho trình duyệt biết nội dung của phần tử có nên được dịch hay không</p>
+        <p>Hãy thử chọn chức năng dịch trang của trình duyệt và dịch thành ngôn ngữ khác,</p>
+        <p translate="no">Bạn sẽ thấy phần nội dung này vẫn được giữ nguyên</p>
+    </article>
+    <hr>
+    <article>
+        <h1>Còn rất nhiều thuộc tính nữa</h1>
+        <p>Tham khảo thêm tại <a target="_blank" rel="noopener noreferrer" href="https://www.w3schools.com/tags/ref_attributes.asp">w3schools</a></p>
+    </article>
+    <hr>
+    <a href="01_HTML_DOC.html">Bài trước</a>|<a href="03_HTML_Iframes.html">Bài tiếp theo</a>
+</body>
+</html>

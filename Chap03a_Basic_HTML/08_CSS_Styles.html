@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Styles</title>
+    <style type="text/css">
+        div#div-internal{
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            background-color: aquamarine;
+            padding: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="08_CSS_Styles.css">
+</head>
+<body>
+    <article>
+        <h1>CSS = Cascading Style Sheets</h1>
+        <p>CSS được dùng để định dạng cho các phần tử trong tài liệu HTML</p>
+        <p>Từ "Cascading" trong CSS có nghĩa nếu một style được áp dụng cho phần tử thì cũng mặc định được áp dụng cho các phần từ con của nó.</p>
+        <p>Ví dụ: nếu bạn đặt thuộc tính {color:blue} cho phần tử body, tất cả chữ hiển thị trên trang web đều sẽ mặc định có màu xanh</p>
+        <figure>
+            <img width="500" src="../sample_media/CSS.png" alt="Error!">
+            <figcaption>Ảnh: Mô hình Cascading trong CSS</figcaption>
+        </figure>
+        <h4>Ví dụ</h4>
+        <p>Các phần tử bên trong thẻ div mặc định thừa kế thuộc tính color từ thẻ div nếu chúng ta không khai báo lại thuộc tính color cho các phần tử này</p>
+        <div style="color: blueviolet;">
+            <span>Đoạn văn bản thừa kế màu sắc từ cha của nó. </span>
+            <span style="color: brown;">Đoạn này định nghĩa lại thuộc tính màu sắc cho riêng nó</span>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h1>03 cách sử dụng CSS</h1>
+        <p><b>Cách 1:</b> Sử dụng inline-style. Khai báo css trong thuộc tính style của phần tử</p>
+        <p><b>Cách 2:</b> Sử dụng internal-style. Khai báo css trong phần tử &lt;style&gt; ở phần &lt;head&gt; của tài liệu HTML</p>
+        <p><b>Cách 3:</b> Sử dụng &lt;link&gt; để liên kết với tập tin css bên ngoài tài liệu HTML</p>
+        <h4>Ví dụ</h4>
+        <div id="div-inline" style="display: inline-block; width: 100px; height: 50px; background-color: bisque; padding: 10px;">Tôi được định dạng bằng inline-style</div>
+        <div id="div-internal">Tôi được định dạng bằng internal-style</div>
+        <div id="div-external">Tôi được định dạng bằng external-style</div>
+    </article>
+    <hr>
+    <a href="07_HTML_Lists.html">Bài trước</a>|<a href="09_CSS_Selectors.html">Bài tiếp theo</a>
+</body>
+</html>

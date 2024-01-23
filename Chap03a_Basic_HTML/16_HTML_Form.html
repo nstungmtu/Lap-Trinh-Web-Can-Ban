@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../highlight/styles/default.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+    <title>HTML Form</title>
+</head>
+<body>
+    <h1>Form trong HTML</h1>
+    <article>
+        <h2>Cấu trúc &lt;form&gt;</h2>
+        <p>Phần tử <code>&lt;form&gt;</code> được sử dụng để tạo một form thu thập dữ liệu nhập của người dùng. Các thuộc tính cơ bản của <code>&lt;form&gt;</code>:</p>
+        <ul>
+            <li><code>action</code>: đích đến của thông tin khi người dùng submit form. Thuộc tính này có thể được ghi đè bởi nút submit thông qua thuộc tính <code>formaction</code>.</li>
+            <li><code>method</code>: phương thức gửi dữ liệu. "post" = HTTP-POST, "get" = HTTP-GET.</li>
+            <li>Tham khảo thêm: <a target="_blank" href="https://www.w3schools.com/html/html_forms_attributes.asp">https://www.w3schools.com/html/html_forms_attributes.asp</a></li>
+        </ul>
+        <h4>Ví dụ</h4>
+<pre><code>
+&lt;form action=&quot;/login&quot; method=&quot;post&quot;&gt;
+    &lt;h2&gt;&Dstrok;&abreve;ng k&yacute; t&agrave;i kho&#x1EA3;n&lt;/h2&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Th&ocirc;ng tin li&ecirc;n h&#x1EC7;&lt;/legend&gt;
+        &lt;label for=&quot;name&quot;&gt;H&#x1ECD; t&ecirc;n:&lt;/label&gt;&lt;br&gt;
+        &lt;input type=&quot;text&quot; name=&quot;name&quot;&gt;&lt;br&gt;
+        &lt;label for=&quot;phone&quot;&gt;S&#x1ED1; &dstrok;i&#x1EC7;n tho&#x1EA1;i&lt;/label&gt;&lt;br&gt;
+        &lt;input type=&quot;text&quot; name=&quot;phone&quot;&gt;
+    &lt;/fieldset&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n&lt;/legend&gt;
+        &lt;label for=&quot;email&quot;&gt;&Dstrok;&#x1ECB;a ch&#x1EC9; email&lt;/label&gt;&lt;br&gt;
+        &lt;input type=&quot;text&quot; name=&quot;email&quot; id=&quot;email&quot;&gt;&lt;br&gt;
+        &lt;label for=&quot;password&quot;&gt;Mật khẩu&lt;/label&gt;&lt;br&gt;
+        &lt;input type=&quot;password&quot; name=&quot;password&quot; id=&quot;password&quot;&gt;
+    &lt;/fieldset&gt;
+    &lt;button type=&quot;submit&quot;&gt;&Dstrok;&abreve;ng k&yacute;&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+    <h4>Đây là kết quả trình duyệt hiển thị nội dung trên</h4>
+    <div style="width: 300px;">
+        <form action="/login" method="post">
+            <h2>Đăng ký tài khoản</h2>
+            <fieldset>
+                <legend>Thông tin liên hệ</legend>
+                <label for="name">Họ tên:</label><br>
+                <input type="text" name="name"><br>
+                <label for="phone">Số điện thoại</label><br>
+                <input type="text" name="phone">
+            </fieldset>
+            <fieldset>
+                <legend>Thông tin tài khoản</legend>
+                <label for="email">Địa chỉ email</label><br>
+                <input type="text" name="email" id="email"><br>
+                <label for="password">Mật khẩu</label><br>
+                <input type="password" name="password" id="password">
+            </fieldset>
+            <button type="submit">Đăng ký</button>
+        </form>
+    </div>
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;input type=&quot;text&quot;&gt;</h2>
+        <p>Tạo ô nhập ký tự trên một dòng</p>
+        <h4>Ví dụ</h4>
+        <input type="text">
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;input type=&quot;password&quot;&gt;</h2>
+        <p>Tạo ô nhập mật khẩu. Ô nhập mật khẩu sẽ che nội dung mà người dùng nhập vào</p>
+        <h4>Ví dụ</h4>
+        <input type="password">
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;input type=&quot;date&quot;&gt;</h2>
+        <p>Tạo ô nhập ngày</p>
+        <h4>Ví dụ</h4>
+        <input type="date" min="2024-01-01" max="2024-12-31">
+        <p>Mặc dù ô nhập ngày có thể hiển thị định dạng ngày khác nhau tùy theo thiết lập của trình duyệt nhưng giá trị nhận vào và trả về của nó luôn là dạng yyyy-mm-dd</p>
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;input type=&quot;time&quot;&gt;</h2>
+        <p>Tạo ô nhập giờ</p>
+        <h4>Ví dụ</h4>
+        <input type="time" min="07:00" max="18:00">
+        <p>Mặc dù ô nhập giờ có thể hiển thị định dạng giờ khác nhau tùy theo thiết lập của trình duyệt nhưng giá trị nhận vào và trả về của nó luôn là dạng hh:mm:ss</p>
+        <p>Nếu bạn nhập thuộc tính <code>step="n"</code> với n&lt;60 thì ô nhập giờ sẽ cho phép bạn chọn đến giá trị giây.</p>
+        <h4>Ví dụ</h4>
+        <input type="time" min="07:00" max="18:00" step="1">
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;input type=&quot;datetime-local&quot;&gt;</h2>
+        <p>Tạo ô nhập ngày và giờ</p>
+        <input type="datetime-local">
+        <p>Mặc dù ô nhập giờ có thể hiển thị định dạng giờ khác nhau tùy theo thiết lập của trình duyệt nhưng giá trị nhận vào và trả về của nó luôn là dạng yyyy-mm-ddThh:mm:ss</p>
+    </article>
+    <hr>
+    <article id="email_article">
+        <h2>&lt;input type=&quot;email&quot;&gt;</h2>
+        <p>Tạo ô nhập địa chỉ email</p>
+        <form method="post" action="#email_article">
+            <input type="email"
+                placeholder="Nhập địa chỉ email"
+                required>
+            <input type="submit" value="Kiểm tra">
+        </form>
+        <p>Bạn có thể dùn thuộc tính <code>pattern</code> để giới hạn tên miền cho địa chỉ email bằng biểu thức chính quy (tham khảo thêm về <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/pattern">biểu thức chính quy trong HTML</a>). Ví dụ:</p>
+        <form method="post" action="#email_article">
+            <input type="email"
+                placeholder="email@mtu.edu.vn"
+                title="Vui lòng nhập địa chỉ email @mtu.edu.vn"
+                pattern=".+@mtu\.edu\.vn"
+                required>
+            <input type="submit" value="Kiểm tra">
+        </form>
+    </article>
+    <hr>
+    <article id="number_article">
+        <h2>&lt;input type=&quot;number&quot;&gt;</h2>
+        <p>Tạo ô nhập giá trị số</p>
+        <form action="#number_article" method="post">
+            <input type="number" placeholder="0" min="1" max="10" step="1" required>
+            <input type="submit" value="Kiểm tra">
+        </form>
+        <p>Để nhập số thập phân, bạn có thể đặt thuộc tính <code>step="0.0{n}1"</code>. Ví dụ: <code>step="0.1"</code> cho phép nhập một chữ số thập phân, <code>step="0.01"</code> cho phép nhập hai chữ chữ số thập phân</p>
+        <form action="#number_article" method="post">
+            <input type="number" placeholder="0" min="1" max="10" step="0.001" required>
+            <input type="submit" value="Kiểm tra">
+        </form>
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;input type=&quot;range&quot;&gt;</h2>
+        <p>Tạo ô nhập số dạng thanh trượt</p>
+        <form>
+            <input value="1" name="range" type="range" min="1" max="10" step="1" required oninput="output.value=this.value">
+            <output name="output" for="range"></output>
+        </form>
+        <p>Đánh dấu giá trị trên thanh trượt</p>
+        <form>
+            <input style="accent-color: #59b8db;" value="1" name="range" type="range" min="0" max="100" step="1" required oninput="output.value=this.value" list="markers" style="width: 300px;">
+            <output name="output" for="range"></output>
+            <datalist id="markers" style="display: flex; flex-direction: row; justify-content: space-between; width: 300px;">
+                <option value="0" label="0"></option>
+                <option value="25" label="25"></option>
+                <option value="50" label="50"></option>
+                <option value="75" label="75"></option>
+                <option value="100" label="100"></option>
+            </datalist>
+        </form>
+    </article>
+    <hr>
+    <article id="tel_article">
+        <h2>&lt;input type=&quot;tel&quot;&gt;</h2>
+        <p>Tạo ô nhập số điện thoại. Vì số điện thoại ở mỗi nơi lại có định dạng khác nhau nên ô nhập số điện thoại trong HTML không quy định sẵn định dạng dữ liệu. Về mặt hiển thị nó trông như một ô nhập <code>type="text"</code>. Tuy nhiên, nó sẽ hỗ trợ trình duyệt trong thao tác tự điền hoặc kích hoạt bàn phím chuyên dụng trên các thiết bị di động.</p>
+        <p>Bạn có thể dùng thuộc tính <code>pattern</code> để quy định định dạng cho ô nhập số điện thoại bằng biểu thức chính quy.</p>
+        <h4>Ví dụ</h4>
+        <form action="#tel_article" method="post">
+            <input type="tel"
+                placeholder="Nhập số điện thoại Việt Nam"
+                pattern="0[1-9][0-9]{8,9}"
+                required>
+            <input type="submit">
+        </form>
+    </article>
+    <hr>
+    <article id="checkbox_article">
+        <h2>&lt;input type=&quot;checkbox&quot;&gt;</h2>
+        <p>Tạo hộp kiểm</p>
+        <form action="#checkbox_article" method="post">
+            <input style="accent-color: #59b8db;" type="checkbox" name="checkbox" value="1">
+            <input type="submit" name="submit" value="submit">
+        </form>
+        <p>Nếu một hộp kiểm không được check, tên và giá trị của nó sẽ không được gửi đi khi bạn submit form.</p>
+        <p>Nếu bạn cần tạo một nhóm các sự lựa chọn và cho phép người sử dụng chọn một hoặc nhiều các sự lựa chọn này, bạn có thể tạo một nhóm các hộp kiểm có cùng thuộc tính <code>name</code> với nhau. Ví dụ:</p>
+        <form action="#checkbox_article" method="post">
+            <fieldset style="display: inline-block;">
+                <legend>Chọn món ăn mà bạn yêu thích</legend>
+                <label>Phở&nbsp;<input type="checkbox" name="favorite_foods" value="Phở"></label>&emsp;
+                <label>Hủ&nbsp;tíu&nbsp;<input type="checkbox" name="favorite_foods" value="Hủ tíu"></label>&emsp;
+                <label>Bún&nbsp;riêu&nbsp;<input type="checkbox" name="favorite_foods" value="Bún riêu"></label>&emsp;
+                <label>Bún&nbsp;bò&nbsp;<input type="checkbox" name="favorite_foods" value="Bún bò"></label>
+            </fieldset>
+            <input type="submit" name="submit" value="submit">
+        </form>
+    </article>
+    <hr>
+    <article id="radio_article">
+        <h2>&lt;input type=&quot;radio&quot;&gt;</h2>
+        <p>Tạo nút radio.</p>
+        <form action="#radio_article" method="post">
+            <fieldset style="display: inline-block;">
+                <legend>
+                    Giới tính của bạn
+                </legend>
+                <label>Nam <input type="radio" name="gender" value="Male"></label>&emsp;
+                <label>Nữ <input type="radio" name="gender" value="Female"></label>&emsp;
+                <label>Khác <input type="radio" name="gender" value="Others"></label>
+            </fieldset>
+            <input type="submit" name="submit" value="submit">
+        </form>
+        <p>Nếu không có nút radio nào trong nhóm được chọn, tên và giá trị của nó sẽ không được gửi đi khi bạn submit form</p>
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;textarea&gt;</h2>
+        <p>Phần tử <code>&lt;textarea&gt;</code> tạo một ô nhập ký tự nhiều dòng</p>
+        <h4>Ví dụ</h4>
+        <textarea name="textarea" id="" cols="30" rows="10"></textarea>
+    </article>
+    <hr>
+    <article id="select_article">
+        <h2>&lt;select&gt;</h2>
+        <p>Tạo hộp chọn (combobox)</p>
+        <form action="#select_article" method="post">
+            <label for="home_town">Chọn quê quán của bạn</label><br>
+            <select name="home_town" id="home_town">
+                <option value="LGA">Long An</option>
+                <option value="TGI">Tiền Giang</option>
+                <option value="DTH">Đồng Tháp</option>
+                <option value="VLO">Vĩnh Long</option>
+                <option value="CTH">Thành phố Cần Thơ</option>
+                <option value="AGI">An Giang</option>
+                <option value="KGI">Kiên Giang</option>
+                <option value="TVI">Trà Vinh</option>
+                <option value="STR">Sóc Trăng</option>
+                <option value="BLI">Bạc Liêu</option>
+                <option value="CMA">Cà Mau</option>
+            </select>
+        </form>
+        <p>Hộp chọn cho phép chọn nhiều lựa chọn</p>
+        <form action="#select_article" method="post">
+            <label for="favorite_fruits">Chọn loại trái cây bạn thích ăn</label><br>
+            <select name="favorite_fruits" id="favorite_fruits" multiple size="6">
+                <optgroup label="Trái cây có vị chua">
+                    <option value="Cóc">Cóc</option>
+                    <option value="Ổi">Ổi</option>
+                </optgroup>
+                <optgroup label="Trái cây có vị ngọt">
+                    <option value="Dưa hấu">Dưa hấu</option>
+                    <option value="Lê">Lê</option>
+                </optgroup>
+            </select><br>
+            <input type="submit" value="submit">
+        </form>
+    </article>
+    <hr>
+    <article id="color_article">
+        <h2>&lt;input type=&quot;color&quot;&gt;</h2>
+        <p>Tạo ô chọn màu sắc. Giá trị nhận vào và trả về của ô chọn màu sắc luôn ở dạng mã hex của hệ màu RGB. Ví dụ: #ffffff tương đương rgb(255,255,255), #2e24bc tương đương rgb(46,36,188).</p>
+        <form action="#color_article" method="post">
+            <input type="color" name="color" 
+            oninput="output.value=this.value">&nbsp;
+            <output for="color" name="output"></output>&nbsp;
+            <input type="submit" value="submit">
+        </form>
+    </article>
+    <hr>
+    <article id="file_article">
+        <h2>&lt;input type=&quot;file&quot;&gt;</h2>
+        <p>Tạo ô chọn tập tin. Thuộc tính <code>accept</code> chỉ định các loại tập tin được phép chọn.</p>
+        <p>Lưu ý: thuộc tính <code>enctype="multipart/form-data"</code> là bắt buộc để form có thể upload tập tin lên webserver. Nếu không khai báo thuộc tính này, form chỉ gửi đi tên của tập tin được chọn trong input.</p>
+        <script>
+            function showImage(input){
+                if(input.files && input.files[0]){
+                    console.log(input.files[0]);
+                    var fileReader = new FileReader();
+                    fileReader.onload = function(e){
+                        document.getElementById("image_preview").src = e.target.result;
+                    }
+                     fileReader.readAsDataURL(input.files[0]);
+                }
+            }
+        </script>
+        <form action="#file_article" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" accept="image/*" onchange="showImage(this)">
+            <input type="submit" value="submit"><br>
+            <img id="image_preview" src="#" alt="Chọn ảnh của bạn" width="300px">
+        </form>
+    </article>
+    <hr>
+    <article>
+        <h2>&lt;input type=&quot;reset&quot;&gt;</h2>
+        <p>Tạo nút bấm xóa trắng toàn bộ các nhập liệu trên form</p>
+        <form action="">
+            <label for="">Họ và tên</label><br>
+            <input type="text"><br>
+            <label for="">Số điện thoại</label><br>
+            <input type="text"><br>
+            <input type="reset" value="Làm lại">
+        </form>
+    </article>
+</body>
+</html>

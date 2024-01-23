@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Bài tập HTML</title>
+    <style>
+        :root{
+            --accent-color: hsl(239, 85%, 60%);
+        }
+        form{
+            display: block;
+            margin-top: 80px;
+            margin-left: 40px;
+            width: 320px;
+            background-color: hsl(0, 0%, 96%);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 12pt;
+        }
+        form::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        form h2{
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        label{
+            display: inline-block;
+            width: 120px;
+            font-size: 0.8em;
+            margin: 14px 0px;
+            vertical-align: top;
+        }
+        input, textarea{
+            display: inline-block;
+            padding: 5px;
+            outline: none;
+            border: 1px solid hsl(0, 0%, 80%);
+            border-radius: 5px;
+            margin: 10px 0px;
+            width: 183px;
+        }
+        input:focus, textarea:focus{
+            border: 1px solid var(--accent-color);
+        }
+        input[type="submit"], input[type="reset"]{
+            float: right;
+            width: auto;
+            margin-bottom: 0px;
+            margin-left: 20px;
+            padding: 5px 20px;
+            cursor: pointer;
+        }
+        input[type="submit"]{
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        .terms{
+            display: block;
+            width: auto;
+        }
+        .terms>input{
+            width: auto;
+            vertical-align: baseline;
+            margin: 0px;
+            accent-color: var(--accent-color);
+        }
+        label:has(+ :required)::after{
+            color: red;
+            content: " *";
+        }
+    </style>
+</head>
+<body>
+    <div style=" position: fixed; right: 0px; font-size: 1.2em; max-width: calc(100% - 440px);">
+        Yêu cầu: Thiết kế form như bên trái<br>
+        <ol>
+            <li>Ràng buộc độ dài ký tự nhập vào và định dạng dữ liệu phù hợp</li>
+            <li>Sử dụng <code>datalist</code> để gợi ý nhập liệu cho ô Tỉnh/TP (tham khảo <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/datalist">datalist</a></li>
+            <li>Khai báo 1 biến lưu chỉ số màu chủ đề cho trang web</li>
+            <li>Thiết lập màu chủ đề cho checkbox, nút chính</li>
+            <li>Thay đổi màu viền của các input thành màu chủ đề khi người dùng focus</li>
+            <li>Sử dụng thuộc tính <code>border-radius</code> để bo tròn góc các phần tử</li>
+            <li><span style="float: left; font-size: 2.5em;">😱</span> Thử dùng CSS để tự động thêm dấu * màu đỏ vào phía sau các <code>label</code> mà <code>input</code> theo sau nó bắt buộc phải nhập</li>
+        </ol>
+        Gợi ý:
+        <ul>
+            <li>Sử dụng thuộc tính <code>margin</code>, <code>padding</code> để điều chỉnh khoảng cách lề và không gian đệm bên trong các ô nhập</li>
+            <li>Sử dụng thuộc tính <code>display</code> để thay đổi kiểu hiển thị của label và input</li>
+            <li>Tìm hiểu sự khác biệt giữa thuộc tính <code>outline</code> và <code>border</code></li>
+            <!-- <li>Tham khảo pseudo-class <code>:has</code></li> -->
+        </ul>
+    </div>
+    <form method="get" action="" autocomplete="off">
+        <h2>Đăng ký tài khoản</h2>
+        <div>
+            <label for="name">Họ tên:</label>
+            <input type="text" id="name" name="name" minlength="4" maxlength="20" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" minlength="5" maxlength="50" required>
+        </div>
+        <div>
+            <label for="password">Mật khẩu:</label>
+            <input type="password" id="password" name="password" minlength="6" maxlength="20" required>
+        </div>
+        <div>
+            <label for="confirm_password">Xác thực mật khẩu:</label>
+            <input type="password" id="confirm_password" name="confirm_password" minlength="6" maxlength="20" required>
+        </div>
+        <div>
+            <label for="phone_number">Số điện thoại:</label>
+            <input type="tel" id="phone_number" name="phone_number" pattern="0[1-9][0-9]{8,9}" required>
+        </div>
+        <div>
+            <label for="address">Địa chỉ:</label>
+            <textarea id="address" name="address" required></textarea>
+        </div>
+        <div>
+            <label for="city">Tỉnh/TP:</label>
+            <input type="text" id="city" name="city" list="city_datalist" required>
+        </div>
+        <div>
+            <label for="accept_terms" class="terms">
+                <input type="checkbox" name="accept_terms" id="accept_terms" required>
+                <span inert>&nbsp;Tôi đồng ý với các điều khoản của trang web.</span>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Đăng ký">
+            <input type="reset" value="Làm lại">
+        </div>
+        <datalist id="city_datalist">
+            <option value="LGA">Long An</option>
+            <option value="TGI">Tiền Giang</option>
+            <option value="DTH">Đồng Tháp</option>
+            <option value="VLO">Vĩnh Long</option>
+            <option value="CTH">Thành phố Cần Thơ</option>
+            <option value="AGI">An Giang</option>
+            <option value="KGI">Kiên Giang</option>
+            <option value="TVI">Trà Vinh</option>
+            <option value="STR">Sóc Trăng</option>
+            <option value="BLI">Bạc Liêu</option>
+            <option value="CMA">Cà Mau</option>
+        </datalist>
+    </form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Table</title>
+</head>
+<body>
+    <h1>Bảng trong HTML</h1>
+    <table border="2px">
+        <caption>
+            <h4>Tựa đề của bảng</h4>
+        </caption>
+        <colgroup>
+            <col style="background-color: beige;" />
+        </colgroup>
+        <thead><!--Dòng tiêu đề-->
+            <tr>
+                <th>Họ và tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Lớp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nguyễn Văn A</td>
+                <td>01/02/2003</td>
+                <td>Nam</td>
+                <td rowspan="2">KTPM1</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Thị B</td>
+                <td>05/07/2004</td>
+                <td>Nữ</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Văn c</td>
+                <td>01/02/2003</td>
+                <td>Nam</td>
+                <td rowspan="2">KTPM2</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Thị E</td>
+                <td>05/07/2004</td>
+                <td>Nữ</td>
+            </tr>
+        </tbody>
+        <tfoot align="right" style="background-color: white;">
+            <tr style="background-color: aquamarine;">
+                <td colspan="4">Trang 1/1</td>
+            </tr>
+        </tfoot>
+    </table>
+    <hr>
+    <a href="05_HTML_Format_Elements.html">Bài trước</a>|<a href="07_HTML_Lists.html">Bài tiếp theo</a>
+</body>
+</html>

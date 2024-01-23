@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Float & Clear</title>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        .float-left{
+            float: left;
+            background: aquamarine;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            min-width: 100px;
+        }
+        .float-right{
+            float: right;
+            background: bisque;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            min-width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Thuộc tính float và clear</h1>
+    <hr>
+    <article>
+        <h2>Dòng (flow) hiển thị của tài liệu HTML</h2>
+        <p>Có 02 kiểu hiển thị cơ bản của các phần tử trong một tài liệu HTML:</p>
+        <ul>
+            <li>
+                Kiểu inline: các phần tử cùng cấp được bố trí nối tiếp nhau theo hàng ngang và theo chiều đọc của văn bản. Ví dụ: văn bản, các phần tử định dạng,... 
+            </li>
+            <li>Kiểu block: các phần tử  được bố trí nối tiếp nhau theo chiều dọc của văn bản và theo thứ tự khai báo, mỗi phần tử  đều có độ rộng bằng với không gian chiều ngang của phần tử chứa nó. Ví dụ: <code>&lt;p&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;h[1-6]&gt;</code></li>
+        </ul>
+        <p>Phần không gian chứa các phần tử kiểu inline được gọi là không gian inline.</p>
+    </article>
+    <hr>
+    <article>
+        <h2>Thuộc tính float</h2>
+        <p>
+            Thuộc tính float sẽ giúp cho phần tử "trôi" về một phía của phần tử cha của nó. Khi một phần tử float, nó sẽ chiếm phần không gian inline của trang web. Các kiểu float:
+        </p>
+        <ul>
+            <li><code>float:left</code> = trôi về phía bên trái</li>
+            <li><code>float:right</code> = trôi về phía bên phải</li>
+            <li><code>float:inline-start</code> = trôi về phía đầu dòng theo chiều đọc của văn bản</li>
+            <li><code>float:inline-end</code> = trôi về phía cuối dòng theo chiều đọc của văn bản</li>
+        </ul>
+        <div>
+            <div class=float-left>
+                <pre>
+.float-left{
+    float: left;
+    background: aquamarine;
+    margin-right: 10px;
+}                </pre>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, debitis fugiat sed nihil, nemo commodi aut enim expedita error delectus ullam, sint maxime repudiandae blanditiis dignissimos! Nobis tempora similique sunt.
+                
+            </p>
+            <div class=float-right>
+                <pre>
+.float-right{
+    float: right;
+    background: bisque;
+    margin-left: 10px;
+}
+                </pre>
+            </div>
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Possimus, tempore? Animi velit corrupti mollitia omnis totam incidunt! Possimus vero delectus quo natus fugiat recusandae modi aspernatur repellat sequi, beatae nulla.
+            </p>
+
+        </div>
+    </article>
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla inventore illum reiciendis cum eveniet saepe facere assumenda provident fugiat fuga obcaecati laboriosam, recusandae illo quo vero soluta voluptatum error praesentium.
+    </div>
+    <hr>
+    <article>
+        <h2>Thuộc tính clear</h2>
+        <p>
+            Khi một phần tử được khai báo thuộc tính <code>clear:[hướng]</code>, nó sẽ dịch chuyển xuống phía dưới để tránh các phần tử float khác ở hướng chỉ định. Lưu ý rằng nó chỉ tránh được các phần tử được khai báo trước nó trong tài liệu HTML.
+        </p>
+        <p>Các hướng của thuộc tính <code>clear</code></p>
+        <ul>
+            <li><code>clear:left</code> = Tránh các phần tử bên trái</li>
+            <li><code>clear:right</code> = Tránh các phần tử bên phải</li>
+            <li><code>clear:both</code> = Tránh cả 2 bên</li>
+            <li><code>clear:inline-start</code> = Tránh các phần tử phía đầu dòng theo chiều đọc của văn bản</li>
+            <li><code>clear:inline-end</code> = Tránh các phần tử phía cuối dòng theo chiều đọc của văn bản</li>
+        </ul>
+        <p>Thuộc tính clear chỉ có hiệu lực nếu phần tử đó đang float hoặc có kiểu hiển thị là block.</p>
+        <div>
+            <div class="float-left">float-left-1</div>
+            <div class="float-right">float-right-1</div>
+            <div class="float-left" style="clear: left; background-color: crimson; color: white;">clear</div>
+            <div class="float-right">float-right-2</div>
+            <div class="float-left">float-left-2</div>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, debitis fugiat sed nihil, nemo commodi aut enim expedita error delectus ullam, sint maxime repudiandae blanditiis dignissimos! Nobis tempora similique sunt.
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eum, debitis fugiat sed nihil, nemo commodi aut enim expedita error delectus ullam, sint maxime repudiandae blanditiis dignissimos! Nobis tempora similique sunt.
+            </p>
+        </div>
+    </article>
+    <hr style="clear: both;">
+    <a href="11_CSS_Position.html">Bài trước</a>|<a href="13_CSS_Variables.html">Bài tiếp theo</a>
+</body>
+</html>

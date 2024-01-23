@@ -1,0 +1,11 @@
+code{
+    color: #cc3030;
+    background-color: #eee;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 3px;
+}
+hr{
+    margin-top: 4em;
+    margin-bottom: 4em;
+}

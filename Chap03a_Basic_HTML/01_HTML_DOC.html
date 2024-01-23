@@ -1,0 +1,63 @@
+<!DOCTYPE html><!-- Khai báo đây là một tài liệu HTML -->
+
+<!-- Thuộc tính lang chỉ định [ngôn ngữ]-[quốc gia] của tài liệu -->
+<html lang="vi-VN">
+
+<!-- Phần tử head chứa các siêu mô tả (meta infomation) của trang web -->
+<head>
+    <!--Chỉ định kiểu mã hóa ký tự unicode-->
+    <meta charset="UTF-8">
+
+    <!--Chỉ định kích thước khung hiển thị của trang,
+        giúp trang hiển thị tốt hơn trên các thiết bị khác nhau-->
+    <!--width=device-width: độ rộng khung hiển thị của trang bằng độ rộng màn hình của thiết bị.
+        Chỉ số này bằng 100vw (100% viewport width) trong CSS-->
+    <!--initial-scale: hệ số zoom mặc định-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Tiêu đề của trang, hiển thị trên tab của trình duyệt-->
+    <title>First HTML Document</title>
+
+    <!-- Thẻ style chứa các khai báo về kiểu của các phần tử trong trang -->
+    <style>
+        .ws-grey{
+            background-color:gainsboro;
+        }
+        .w3-white{
+            background-color: white;
+        }
+    </style>
+</head>
+
+<!--Phần tử body chứa tất cả nội dung hiển thị của trang-->
+<body>
+    <h1>Giới thiệu về HTML</h1>
+    <ul>
+        <li>HTML là từ viết tắt của cụm từ HyperText Markup Language, tức Ngôn-ngữ Đánh-dấu Siêu-Văn-bản</li>
+        <li>HTML là ngôn ngữ chuẩn cho việc tạo các trang web. Cụm từ siêu văn bản ám chỉ tài liệu không chỉ đơn thuần là văn bản mà còn có khả năng liên kết đến các tài liệu khác bên trong hoặc bên ngoài trang web (thường được gọi là Hyperlink - Siêu liên kết).</li>
+        <li>Tập tin HTML mô tả cấu trúc của trang web, nó bao gồm một chuỗi ký tự khai báo các phần tử của trang web</li>
+        <li>HTML được phát minh bởi Tim Berners-Lee năm 1991. Phiên bản HTML hiện tại là 5.2. HTML vẫn đang được tiếp tục được phát triển, bổ sung thêm nhiều tính năng mới.</li>
+    </ul>
+    <img src="../sample_media/html-css-javascript.jpg" alt="html" width="500">
+    <hr>
+    <h1>Cấu trúc tài liệu HTML</h1>
+    <div class="ws-grey" style="width:99%;border:1px solid grey;padding:3px;margin:0;">&lt;html&gt;
+        <div style="width:90%;border:1px solid grey;padding:3px;margin:20px">&lt;head&gt;
+        <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;title&gt;Tiêu đề trang web&lt;/title&gt;
+        </div>
+        &lt;/head&gt;
+        </div>
+        <div class="ws-grey" style="width:90%;border:1px solid grey;padding:3px;margin:20px;">&lt;body&gt;
+        <div class="w3-white" style="width:90%;border:1px solid grey;padding:3px;margin:20px;">
+        <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;h1&gt;Tiêu đề của nội dung&lt;/h1&gt;</div>
+        <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;p&gt;Đây là một đoạn văn bản.&lt;/p&gt;</div>
+        <div style="width:90%;border:1px solid grey;padding:5px;margin:20px">&lt;p&gt;Đây là một đoạn văn bản.&lt;/p&gt;</div>
+        </div>
+        &lt;/body&gt;
+        </div>
+        &lt;/html&gt;
+        </div>
+    <hr>
+    <a href="02_HTML_Attributes.html">Bài tiếp theo</a>
+</body>
+</html>

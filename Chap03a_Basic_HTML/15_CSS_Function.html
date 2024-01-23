@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../highlight/styles/default.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+    <title>CSS Function</title>
+    <style>
+        #attr_example::after{
+            content: " (" attr(href) ")";
+        }
+        #calc_example{
+            padding: 10px;
+            background-color: hsl(calc(10*12), 100%, 50%);
+            width: calc(100% - 200px);
+        }
+        #min_example{
+            padding: 10px;
+            background-color: hsl(120, 100%, 50%);
+            width: min(calc(100% - 20px), 500px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Hàm trong CSS</h1>
+    <p>Hàm trong CSS được sử dụng để làm giá trị cho thuộc tính CSS của phần tử. CSS không cho phép người sử dụng tự định nghĩa hàm mà chỉ cho phép sử dụng các hàm sẵn có.</p>
+    <hr>
+    <article>
+        <h2>Hàm attr()</ h2>
+        <p>Hàm <code>attr([Tên thuộc tính])</code>: Trả về giá trị của thuộc tính của đối tượng</p>
+        <h4>Ví dụ</h4>
+<pre><code>
+    #attr_example::after{
+        content: " (" attr(href) ")";
+    }
+</code></pre>
+        <a id="attr_example" href="https://www.w3schools.com/cssref/css_functions.php">Đến trang W3School</a>
+    </article>
+    <hr>
+    <article>
+        <h2>Hàm calc()</h2>
+        <p>Thực hiện phép toán số học để xác định giá trị cho thuộc tính</p>
+        <h4>Ví dụ</h4>
+        <div id="calc_example">Phần tử này có độ rộng bằng 100% độ rộng của tài liệu trừ đi 200px</div>
+    </article>
+    <hr>
+    <article>
+        <h2>Hàm min(), max()</h2>
+        <p>Trả về giá trị nhỏ nhất, giá trị lớn nhất trong danh sách các giá trị, mỗi giá trị cách nhau bởi dấu ","</p>
+        <h4>Ví dụ</h4>
+<pre><code>
+#min_example{
+    width: min(100%, 300px);
+}
+</code></pre>
+        <div id="min_example">Phần tử này có chiều rộng = 100% chiều rộng tài liệu nếu khung hiển thị của tài liệu nhỏ hơn 500px</div>
+    </article>
+    <hr style="clear: both;">
+    <a href="14_CSS_Units.html">Bài trước</a>|<a href="16_HTML_Form.html">Bài tiếp theo</a>
+</body>
+</html>

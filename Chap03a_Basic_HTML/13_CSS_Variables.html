@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../highlight/styles/default.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+    <title>CSS Variables</title>
+    <style>
+        :root{
+            --primary-color: #cc3030;
+        }
+        button.primary-button{
+            background-color: var(--primary-color);
+            padding: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sử dụng biến trong CSS</h1>
+    <p>Biến trong CSS được dùng để lưu các giá trị có khả năng được sử dụng lại nhiều lần. Ví dụ: Màu sắc, khoảng cách lề, kích thước không gian đệm, ... Trường biến được dùng rất hiệu quả là quản lý chủ đề của trang web (theming)</p>
+    <p>Biến được khai báo tương tự như một thuộc tính của đối tượng bằng cú pháp <code>--[tên biến]</code>. Sau khi được khai báo, biến có thể được truy xuất bới chính đối tượng đó và các phần tử hậu duệ của nó trong tài liệu HTML thông qua cú pháp <code>var(--[tên biến])</code>.</p>
+    <p>Nếu biến được khai báo trong đối tượng <code>:root</code>, có có thể được truy xuất bởi tất cả các phần tử trong tài liệu HTML.</p>
+    <h2>Ví dụ</h2>
+    <h3>Khai báo biến</h3>
+    <pre><code>
+    :root{
+        --primary-color: #cc3030;
+    }
+    </code></pre>
+    <h3>Sử dụng biến</h3>
+    <pre><code>
+    button.primary-button{
+        background-color: var(--primary-color);
+    }
+    </code></pre>
+    <button class="primary-button">Đừng bấm vào tôi làm gì!</button>
+    <hr style="clear: both;">
+    <a href="12_CSS_Float.html">Bài trước</a>|<a href="14_CSS_Units.html">Bài tiếp theo</a>
+</body>
+</html>

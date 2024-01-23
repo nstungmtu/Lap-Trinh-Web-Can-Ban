@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position</title>
+    <style>
+        code{
+            color: #cc3030;
+            background-color: #eee;
+            padding-left: 3px;
+            padding-right: 3px;
+            border-radius: 3px;
+        }
+        .position-static{
+            position: static;
+            top: 50px;
+            left: 50px;
+            padding: 20px;
+            background-color: aquamarine;
+        }
+        .position-relative{
+            position: relative;
+            padding: 20px;
+            width: 50px;
+            margin: 20px;
+            display: inline-block;
+        }
+        .position-fixed{
+            position: fixed;
+            background-color: beige;
+            bottom: 0px;
+            right: 0px;
+        }
+        .position-absolute-parent{
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background-color: aliceblue;
+            outline: 1px #cc3030 solid;
+        }
+        .position-absolute{
+            position:absolute;
+            width: 100px;
+            background-color: aquamarine;
+            top: 30px;
+            left: 40px;
+        }
+        .sticky-container{
+            width: 300px;
+            height: 150px;
+            border: 5px lightblue solid;
+            overflow: auto;
+        }
+        .sticky{
+            position: sticky;
+            border: 2px limegreen solid;
+            background-color: aquamarine;
+            top: 0px; /*vị trí của phần tử khi chuyển trạng thái sticky*/
+
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS Position</h1>
+    <hr>
+    <article>
+        <h2>Thuộc tính position</h2>
+        <p>Thuộc tính <code>position</code> chỉ định phương pháp định vị cho phần tử HTML.</p>
+        <p>Có 5 phương pháp định vị:</p>
+        <ul>
+            <li><code>static</code></li>
+            <li><code>relative</code></li>
+            <li><code>fixed</code></li>
+            <li><code>absolute</code></li>
+            <li><code>sticky</code></li>
+        </ul>
+        <p>Sau khi xác định phương pháp định vị, bạn có thể điều chỉnh vị trí xuất hiện của phần tử HTML trên trang web bằng các thuộc tính <code>left</code>, <code>top</code>, <code>right</code>, <code>bottom</code>.</p>
+    </article>
+    <hr>
+    <article>
+        <h2>position:static</h2>
+        <p>Phần tử HTML mặc định có giá trị thuộc tính <code>position:static</code> và không thể được di chuyển bằng các thuộc tính left, top, right, bottom.</p>
+        <div class="position-static">
+            <code>static</code> = tĩnh nên tôi chỉ nằm yên một chỗ
+            <pre>
+                .position-static{
+                    position: static;
+                    top: 50px;
+                    left: 50px;
+                }
+            </pre>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h2>position:relative</h2>
+        <p>Khi phần tử được gán thuộc tính <code>position:relative</code> có thể thay đổi vị trí tương đối so với vị trí nó được khai báo.</p>
+        <p>Phần tử <code>relative</code> chiếm một diện tích trên trang web tại nơi nó được khai báo. Khi được thay đổi vị trí, phần tử sẽ không "đẩy" các đối tượng khác và phần diện tích bị chiếm ban đầu sẽ không bị các phần tử khác lắp vào.</p>
+        <div>
+            <span>Fugiat qui dolore proident elit deserunt aliqua duis adipisicing enim non laboris.</span>
+            <div class="position-relative" style="background-color: #cc3030; left: 200px; top: 20px;">DIV1</div>
+            <div class="position-relative" style="background-color: aqua;">DIV2</div>
+            <span>Culpa veniam duis qui nisi eiusmod in ad dolor do Lorem.</span>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h2>position:fixed</h2>
+        <p>Phần tử với thuộc tính này sẽ có vị tương đối với khung hiển thị của trang web (cửa sổ trình duyệt), không chiếm diện tích tại nơi nó được khai báo và giữ nguyên tọa độ trên màn hình khi người dùng cuộn trang. (ví dụ ở góc dưới bên phải)</p>
+        <div class="position-fixed">
+<pre>
+    .position-fixed{
+        position: fixed;
+        background-color: beige;
+        bottom: 0px;
+        right: 0px;
+    }
+</pre>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h2>position:absolute</h2>
+        <p>Phần tử có thuộc tính này sẽ có vị trí tương đối với tổ tiên gần nhất của nó mà đã được khai báo thuộc tính <code>position</code> khác <code>static</code> (cha, ông nội, ông cố ...), không chiếm diện tích trang tại nơi nó được khai báo</p>
+        <div class="position-absolute-parent">
+            <div class="position-absolute">I'm not absolutely placed here.</div>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h2>position:sticky</h2>
+        <p>Phần tử có vị trí này sẽ tự động chuyển sang trạng thái "sticky" với phần tử cha của nó nếu vị trí ban đầu của nó nằm ngoài khung hiển thị khi người dùng cuộn nội dung</p>
+        <div class="sticky-container">
+            <h4>Irure sint incididunt velit incididunt.</h4>
+            <div class="sticky">I'm sticky!</div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati natus fugiat voluptas, numquam doloremque eos quaerat error perferendis voluptates ut, pariatur aliquam quisquam iure, reprehenderit unde. Veritatis sit recusandae quasi?</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima cum sint commodi, velit ullam quam voluptatum provident assumenda! Assumenda cupiditate sunt doloremque hic mollitia possimus aliquid laboriosam quibusdam iste dicta.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam earum facere incidunt nam ab aliquid tenetur ex, nemo provident ducimus in, quas assumenda laborum perspiciatis, praesentium nisi perferendis reiciendis voluptatum?</p>
+        </div>
+    </article>
+    <div style="height: 200px;">.</div>
+    <hr>
+    <a href="10_CSS_Box_Model.html">Bài trước</a>|<a href="12_CSS_Float.html">Bài tiếp theo</a>
+</body>
+</html>
