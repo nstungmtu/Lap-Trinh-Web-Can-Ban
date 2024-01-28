@@ -11,6 +11,12 @@
         #descendant-selector p{
             color: blue;
         }
+        #descendant-selector p{
+            color: red !important;
+        }
+        #descendant-selector p{
+            color: blueviolet;
+        }
         #child-selector > span{
             color: blue;
         }
@@ -76,7 +82,7 @@
         <div id="descendant-selector">
             <p>
                 _ Con 1
-                <br> <span>&emsp;_Cháu 1.1</span>
+                <br><span>&emsp;_Cháu 1.1</span>
                 <br><span>&emsp;_Cháu 1.2</span>
             </p>
             <p>
@@ -334,7 +340,7 @@
             <tr>
                 <td>::marker</td>
                 <td>::marker</td>
-                <td>Chọn phần tử đánh dấu của mỗi mục trong danh sách &lt;p&gt;</td>
+                <td>Chọn phần tử đánh dấu của mỗi mục trong danh sách</td>
             </tr>
             <tr>
                 <td>::selection</td>
@@ -349,6 +355,16 @@
         </table>
     </article>
     <hr>
+    <article>
+        <h2>Thứ tự ghi đè CSS</h2>
+        <ul>
+            <li>Khai báo sau sẽ ghi đè khai báo trước</li>
+            <li>Thuộc tính style của phần tử sẽ ghi đè khai báo trong thẻ <code>&lt;style&gt;</code> và tập tin css</li>
+            <li>Selector cụ thể hơn sẽ có độ ưu tiên cao hơn</li>
+            <li>Khai báo kèm theo <code>!important</code> có ưu tiên cao nhất</li>
+        </ul>
+    </article>
+    <p>Tham khảo thêm <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_selectors</a></p>
     <a href="08_CSS_Styles.html">Bài trước</a>|<a href="10_CSS_Box_Model.html">Bài tiếp theo</a>
 </body>
 </html>

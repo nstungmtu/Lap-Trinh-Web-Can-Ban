@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Grid Layout</title>
+    <style>
+        :root{
+            --primary-color: #dd1763;
+            --accent-color: #94d198;
+            --hline-color: #1650DE;
+            --vline-color: #DEA316;
+        }
+        body{
+            max-width: 960px;
+            margin: 0px auto;
+        }
+        hr{
+            margin-top: 4em;
+            margin-bottom: 4em;
+        }
+        h1,h2{
+            text-align: center;
+        }
+        h3 code{
+            background-color: var(--accent-color);
+            padding: 5px;
+            font-weight: normal;
+        }
+        p code{
+            color: var(--primary-color);
+            white-space: nowrap;
+        }
+        article{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr;
+            padding: 10px;
+            margin-top: 40px;
+            align-items: start;
+        }
+        article > h3{
+            grid-area: 1 / 1 / 2 / 2;
+            padding: 5px;
+            padding-top: 0px;
+            margin-top: 0px;
+        }
+        .description{
+            grid-area: 2 / 1 / 3 / 2;
+            padding: 5px;
+        }
+        .illustration{
+            grid-area: 1 / 2 / 4 / 3;
+            border: 15px solid var(--accent-color);
+            position: relative;
+        }
+        .illustration::before{
+            content: "Grid Container";
+            background-color: var(--accent-color);
+            display: block;
+            padding-bottom: 10px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+        .grid_container{
+            display: grid;
+            gap: 5px;
+            padding: 5px;
+            min-height: 300px;
+        }
+        .grid_container > div{
+            padding: 10px;
+            background-color: var(--primary-color);
+            color: white;
+            font-family: monospace;
+        }
+        .grid_container > div.special{
+            background-color: hsl(124, 65%, 31%);
+        }
+        
+        .grid_lines{
+            position: absolute;
+            top: 25px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+        }
+        .grid_lines .hline{
+            height: 5px;
+            width: 100%;
+            background-color: var(--hline-color);
+            position: absolute;
+            overflow: visible;
+            opacity: 0.6;
+        }
+        .hline::after{
+            content: attr(title);
+            position: absolute;
+            left: -10px;
+            top: -0.5em;
+            font-family: monospace;
+            z-index: 2;
+        }
+        .grid_lines .vline{
+            position:absolute;
+            overflow: visible;
+            background-color: var(--vline-color);
+            width: 5px;
+            height: 100%;
+            opacity: 0.6;
+            font-family: monospace;
+        }
+        .vline::after{
+            position:absolute;
+            content: attr(title);
+            bottom: -1em;
+            z-index: 2;
+        }
+        .grid_container.s1-2{
+            grid-auto-flow: column;
+        }
+        .grid_container.s2{
+            grid-template-rows: 50px 80px;
+        }
+        .grid_container.s3{
+            grid-template-rows: 50px 80px;
+            grid-template-columns: 100px 150px;
+        }
+        .grid_container.s3a{
+            grid-template-rows: 80px 80px;
+            grid-template-columns: 100px 150px;
+            grid-auto-flow: column;
+        }
+        .grid_container.s4{
+            grid-template-rows: 3em 1fr;
+            grid-template-columns: 25% 2fr 1fr;
+        }
+        .grid_container.s5{
+            grid-template-rows: 3em minmax(4em, auto);
+            grid-template-columns: minmax(25%, 150px) 2fr 1fr;
+        }
+        .grid_container.s6{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: 3em repeat(2, 5em) 1fr;
+        }
+        .grid_container.s7{
+            grid-template-rows: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 2em 1em;
+        }
+        .grid_container.s8{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid_container.s8 .special{
+            grid-row-start: 2;
+            grid-column-start: 2;
+            grid-row-end: 3;
+            grid-column-end: 3;
+        }
+        .grid_container.s9{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid_container.s9 .special{
+            grid-row: 2/3;
+            grid-column: 3/4;
+        }
+        .grid_container.s10{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid_container.s10 .special{
+            grid-area: 3/2/4/3;
+        }
+        .grid_container.s11{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid_container.s11 .special{
+            grid-area: 2/2/3/4;
+            text-align: center;
+        }
+        .grid_container.s12{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid_container.s12 .special{
+            grid-area: 2/1/4/3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .grid_container.s13{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid_container.s13 .special{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-row: 2/span 1;
+            grid-column: 1/span 3;
+        }
+        .grid_container.s14{
+            grid-template-rows: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .grid_container.s14 .special{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            grid-area: 1 /  1 / span 1 / span 3;
+        }
+        .grid_container.s15{
+            /* grid-template-rows: [header-start] 3em [header-end nav-start] 2em [nav-end main-start aside-start] 5em [main-end aside-end footer-start] 3em [footer-end];
+            grid-template-columns: [header-start nav-start main-start footer-start] 1fr [main-end aside-start] 10em [header-end nav-end aside-end footer-end]; */
+            grid-template-rows: 3em 2em 5em 3em;
+            grid-template-columns: 1fr 10em;
+            grid-template-areas: "header header" "nav nav" "main aside" "footer footer";
+            grid-auto-flow: row;
+        }
+        .grid_container.s15 > div{
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .grid_container.s15 > div > code{
+            color: var(--primary-color);
+        }
+        .grid_container.s15 > div::before{
+            position: absolute;
+            content: attr(title);
+            background-color: var(--primary-color);
+            top: 0px;
+            left: 0px;
+            padding: 2px;
+        }
+        .grid_container.s15 .header{
+            grid-area: header;
+        }
+        .grid_container.s15 .nav{
+            grid-area: nav;
+        }
+        .grid_container.s15 .main{
+            grid-area: main;
+        }
+        .grid_container.s15 .aside{
+            grid-area: aside;
+        }
+        .grid_container.s15 .footer{
+            grid-area: footer;
+        }
+        .grid_container.s15a{
+            grid-template-rows: [row1-start] 1fr [row2-start] 1fr;
+            grid-template-columns: [col1-start] 1fr [col2-start] 1fr;
+        }
+        .grid_container.s15a .special{
+            grid-row: row1-start / row2-start;
+            grid-column: col1-start / col2-start;
+        }
+        .grid_container.s15b{
+            grid-template-rows: [row1-start] 1fr [row1-end row2-start] 1fr;
+            grid-template-columns: [col1-start] 1fr [col1-end col2-start] 1fr;
+        }
+        .grid_container.s15b .special{
+            grid-row: row1;
+            grid-column: col1;
+        }
+        .grid_container.s15c{
+            grid-template-rows: [cell1-start] 1fr [cell1-end] 1fr;
+            grid-template-columns: [cell1-start] 1fr [cell1-end] 1fr;
+        }
+        .grid_container.s15c .special{
+            grid-area: cell1;
+        }
+        .grid_container.s16{
+            grid-template-rows: 4em 1fr;
+            grid-template-columns: 150px 1fr;
+            justify-items: start;
+            align-items: start;
+            padding: 0px;
+        }
+        .grid_container.s17{
+            grid-template-rows: 4em 1fr;
+            grid-template-columns: 150px 1fr;
+            justify-items: center;
+            align-items: center;
+            padding: 0px;
+        }
+        .grid_container.s18{
+            grid-template-rows: 4em 1fr;
+            grid-template-columns: 150px 1fr;
+            justify-items: end;
+            align-items: end;
+            padding: 0px;
+        }
+        .grid_container.s19{
+            grid-template-rows: 4em 1fr;
+            grid-template-columns: 150px 1fr;
+            justify-items: stretch;
+            align-items: start;
+            padding: 0px;
+        }
+        .grid_container.s20{
+            grid-template-rows: 4em 1fr;
+            grid-template-columns: 150px 1fr;
+            justify-items: start;
+            align-items: stretch;
+            padding: 0px;
+        }
+        .grid_container.s21{
+            grid-template-rows: 4em 1fr;
+            grid-template-columns: 150px 1fr;
+            justify-items: stretch;
+            align-items: stretch;
+            padding: 0px;
+        }
+        .grid_container.s22{
+            grid-template-rows: 4em 1fr;
+            grid-template-columns: 150px 1fr;
+            justify-items: center;
+            align-items: center;
+            padding: 0px;
+        }
+        .grid_container.s22 .special{
+            justify-self: end;
+            align-self: stretch;
+        }
+        .grid_container.s23{
+            grid-template-rows: repeat(3, 3em);
+            grid-template-columns: repeat(3, 3em);
+            justify-content: start;
+            align-content: start;
+            padding: 0px;
+        }
+        .grid_container.s24{
+            grid-template-rows: repeat(3, 3em);
+            grid-template-columns: repeat(3, 3em);
+            justify-content: center;
+            align-content: center;
+            padding: 0px;
+        }
+        .grid_container.s25{
+            grid-template-rows: repeat(3, 3em);
+            grid-template-columns: repeat(3, 3em);
+            justify-content: end;
+            align-content: end;
+            padding: 0px;
+        }
+        .grid_container.s26{
+            grid-template-rows: repeat(3, 3em);
+            grid-template-columns: repeat(3, 3em);
+            justify-content: space-around;
+            align-content: start;
+            padding: 0px;
+        }
+        .grid_container.s27{
+            grid-template-rows: repeat(3, 3em);
+            grid-template-columns: repeat(3, 3em);
+            justify-content: space-between;
+            align-content: start;
+            padding: 0px;
+        }
+        .grid_container.s28{
+            grid-template-rows: repeat(3, 3em);
+            grid-template-columns: repeat(3, 3em);
+            justify-content: space-evenly;
+            align-content: start;
+            padding: 0px;
+        }
+        .grid_container.s29{
+            grid-template-rows: repeat(3, 3em);
+            grid-template-columns: repeat(3, 3em);
+            justify-content: space-evenly;
+            align-content: space-evenly;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+    <h1>BỐ CỤC DẠNG LƯỚI TRONG HTML - GRID LAYOUT</h1>
+    <p style="text-align: center;">CSS Grid là một tính năng mạnh mẽ cho phép tạo bố cục hai chiều cho trang web. CSS Grid gồm các Grid-item nằm trong một Grid-container được sắp xếp theo hàng và cột (tracks) được định vị bởi các đường chỉ (dây, lines). Về cơ bản, ta có thể xem CSS Grid tương tự như bảng tuy nhiên nó cho phép các Grid-item có vị trí và kích thước linh hoạt hơn.</p>
+    <hr>
+    <h2>Khung chứa lưới (Grid Container)</h2>
+    <article>
+        <h3>
+            <code>1. display: grid;</code><br>
+            <code>2. /*grid-auto-flow: row*/</code><br>
+        </h3>
+        <div class="description">
+            <p>Mặc định Grid-container bố trí Grid-item theo từng dòng. Do không có khai báo cột nên Grid-container hiện tại chỉ có một cột</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s1">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div><div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3>
+            <code>1. display: grid;</code><br>
+            <code>2. grid-auto-flow: column</code><br>
+        </h3>
+        <div class="description">
+            <p>Grid-container bố trí các Grid-item theo từng cột và do chưa khai báo số dòng nên Grid-container chỉ có một dòng</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s1-2">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div><div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Khai báo khung lưới kiểu tường minh (Explicit Grid)</h2>
+    <article>
+        <h3><code>grid-template-rows: 50px 80px;</code></h3>
+        <div class="description">
+            <p>Khai báo kích thước bằng số đo cụ thể cho từng dòng trong Grid-container theo thứ tự xuất hiện</p>
+            <p>Như khai báo trên, chúng ta chỉ mới khai báo kích thước cho 2 dòng đầu tiên, do đó chỉ có 2 dòng đầu tiên có kích thước theo khai báo, các dòng còn lại có kích thước tự động theo nội dung của nó</p>
+            <p>Vì chúng ta chưa khai báo cột nên Grid-container mặc định hiểu chỉ có một cột và cột này có kích thước bằng 100% chiều rộng của Grid-container</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s2">
+                <div class="special">Grid item 1</div><div class="special">Grid item 2</div><div>Grid item 3</div><div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3>
+            <code>1. grid-template-rows: 50px 80px;</code><br>
+            <code>2. grid-template-colums: 100px 150px;</code>
+        </h3>
+        <div class="description">
+            <p>Theo khai báo trên, Grid-container chúng ta có 2 cột. Mặc định Grid-container sẽ sắp xếp các Grid-item theo hàng ngang và theo chiều đọc văn bản. Khi hết kích thước chiều ngang của Grid-container, các Grid-item sẽ tự động được bố trí vào hàng kế tiếp.</p>
+            <p>Mỗi hàng hoặc cột được gọi chung là một Track</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s3">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div><div>Grid item 4</div><div class="special">Grid item 5</div><div class="special">Grid item 6</div>
+                <div class="special">Grid item 7</div><div class="special">Grid item 8</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3>
+            <code>1. grid-template-rows: 80px 80px;</code><br>
+            <code>2. grid-template-colums: 100px 150px;</code><br>
+            <code>3. grid-auto-flow: column;</code>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s3a">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div><div>Grid item 4</div><div class="special">Grid item 5</div><div class="special">Grid item 6</div>
+                <div class="special">Grid item 7</div><div class="special">Grid item 8</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3>
+            <code>1. grid-template-rows: 3em 1fr;</code><br>
+            <code>2. grid-template-columns: 25% 2fr 1fr;</code>
+        </h3>
+        <div class="description">
+            <p>Ngoài các đơn vị đo lường thông dụng, hệ thống grid có mộth đơn vị đo lường đặc biệt là <code>fr</code> (Fractional Unit - Đơn vị phân số), được tính tự động dựa trên khoảng trống còn lại của Grid-container</p>
+            <p>Kích thước của <code>1fr</code> không cố định mà dựa vào "số lượng" <code>fr</code> chúng ta sử dụng. Ví dụ: Tại dòng code 1, chúng ta chỉ sử dụng một <code>fr</code> nên tại dòng này, <code>1fr</code> = toàn bộ khoảng trống còn lại theo chiều dọc của Grid-container (Chiều dọc của Grid-container - 3em); Tại dòng code 2, chúng ta sử dụng <code>3fr</code> nên <code>1fr</code> trong trường hợp này = <var>1/3</var> khoảng trống còn lại theo chiều ngang của Grid-container (75% chiều ngang của Grid-container)
+        </div>
+        <div class="illustration">
+            <div class="grid_container s4">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div><div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Khai báo khung lưới theo giá trị lớn nhất và giá trị nhỏ nhất (min, max)</h2>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-template-rows: 3em minmax(4em, auto);</code><br>
+            <code>2. grid-template-columns: minmax(25%, 150px) 2fr 1fr;</code>
+        </h3>
+        <div class="description">
+            <p>Hàm <code>minmax([min],[max])</code> nhận vào 2 tham số, tham số đầu tiên là giá trị nhỏ nhất và tham số thứ hai là giá trị lớn nhất.</p>
+            <p>
+                Tại dòng code 1, chúng ta khai báo kích thước dòng thứ 2 theo kiểu giá trị <code>minmax</code>, trong đó, chiều cao nhỏ nhất của dòng là <code>4em</code>, chiều cao lớn nhất của dòng là <code>auto</code>. Do đó, các Grid-item tại dòng 2 có thể tự giãn chiều cao theo nội dung mà không bị giới hạn.
+            </p>
+            <p>
+                Tại dòng code 2, chúng ta khai báo kích thước cột lớn nhất là <code>150px</code>. Do đó, cho dù nội dung còn nhiều, nó cũng không được phép mở rộng hơn phạm vị <code>150px</code>.
+            </p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s5">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4 <br>
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti accusantium vel laudantium dicta ducimus hic officia aspernatur dolorum odit. Repudiandae libero sit iure? Dolorem non esse provident accusamus perspiciatis vero.
+                </div>
+                <div>Grid item 5</div><div>Grid item 6</div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Khai báo khung lưới theo kiểu lặp lại (Reapeating Grid Track)</h2>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-template-rows: repeat(3, 1fr);</code><br>
+            <code>2. grid-template-columns: 3em repeat(2, 5em) 1fr;</code>
+        </h3>
+        <div class="description">
+            <p>Hàm <code>repeat([times, size])</code> nhận vào 2 tham số: số lần lặp lại Track và kích thước mỗi Track.</p>
+            <p>Tại dòng code 1, chúng ta khai báo có 3 track và mỗi track có kích thước <code>1fr</code>. Khai báo này tương đương với khai báo <code>grid-template-rows: 1fr 1fr 1fr;</code></p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s6">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+                <div>Grid item 7</div><div>Grid item 8</div><div>Grid item 9</div>
+                <div>Grid item 10</div><div>Grid item 11</div><div>Grid item 12</div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Khoảng cách khung lưới</h2>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-gap: 2em 1em;</code><br>
+            <code>2. grid-row-gap: 2em;</code><br>
+            <code>3. grid-column-gap: 1em;</code>
+        </h3>
+        <div class="description">
+            <p>
+                Thuộc tính <code>grid-gap</code> nhận vào 2 tham số, khoảng cách dòng và khoảng cách cột. Theo khai báo phía trên, dòng 1 bao gồm cả nội dung khai báo của dòng 2 và dòng 3.
+            </p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s7">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+                <div>Grid item 7</div><div>Grid item 8</div><div>Grid item 9</div>
+                <div>Grid item 10</div><div>Grid item 11</div><div>Grid item 12</div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Vị trí của Grid-item trên Grid-container</h2>
+    <p><center>Hãy tưởng tượng bạn đang cầm một tấm lưới trên tay, khi đó:</center></p>
+    <p><center>Grid-lines (dây): là những đường chỉ tạo lên mắt lưới. Những đường này được</center></p>
+    <p><center>Grid-area (ô): phần diện tích được bao bọc bới các đường chỉ.</center></p>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-row-start: 2;</code><br>
+            <code>2. grid-column-start: 2;</code><br>
+            <code>3. grid-row-end: 3;</code><br>
+            <code>4. grid-column-end: 3;</code>
+        </h3>
+        <div class="description">
+            <p>
+                Các Grid-item có vị trí linh động trên Grid-container tùy theo khai báo thuộc tính CSS. <br>
+                Khai báo bên trên là của phần tử <code>Grid item 1</code>.
+            </p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s8">
+                <div class="special">Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+                <div>Grid item 7</div><div>Grid item 8</div><div>Grid item 9</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="1"></div>
+                <div class="hline" title="2" style="top: calc(33% - 1px);"></div>
+                <div class="hline" title="3" style="top: calc(66% - 1px);"></div>
+                <div class="hline" title="4" style="top: calc(100% - 5px);"></div>
+                <div class="vline" title="1"></div>
+                <div class="vline" title="2" style="left: calc(33%);"></div>
+                <div class="vline" title="3" style="left: calc(66%);"></div>
+                <div class="vline" title="4" style="left: calc(100% - 5px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-row: 2/3;</code><br>
+            <code>2. grid-column: 3/4;</code>
+        </h3>
+        <div class="description">
+            <p>
+                Đây là dạng khai báo vắng tắt của ví dụ bên trên.
+                <code>grid-row: [row-start]/[row-end];</code>
+                <code>grid-column: [column-start]/[column-end];</code>
+            </p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s9">
+                <div class="special">Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+                <div>Grid item 7</div><div>Grid item 8</div><div>Grid item 9</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="1"></div>
+                <div class="hline" title="2" style="top: calc(33% - 1px);"></div>
+                <div class="hline" title="3" style="top: calc(66% - 1px);"></div>
+                <div class="hline" title="4" style="top: calc(100% - 5px);"></div>
+                <div class="vline" title="1"></div>
+                <div class="vline" title="2" style="left: calc(33%);"></div>
+                <div class="vline" title="3" style="left: calc(66%);"></div>
+                <div class="vline" title="4" style="left: calc(100% - 5px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-area: 3/2/4/3;</code>
+        </h3>
+        <div class="description">
+            <p>
+                Khai báo vắng tắt bằng tham số <code>grid-area: [row-start]/[columm-start]/[row-end]/[column-end]</code>
+            </p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s10">
+                <div class="special">Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+                <div>Grid item 7</div><div>Grid item 8</div><div>Grid item 9</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="1"></div>
+                <div class="hline" title="2" style="top: calc(33% - 1px);"></div>
+                <div class="hline" title="3" style="top: calc(66% - 1px);"></div>
+                <div class="hline" title="4" style="top: calc(100% - 5px);"></div>
+                <div class="vline" title="1"></div>
+                <div class="vline" title="2" style="left: calc(33%);"></div>
+                <div class="vline" title="3" style="left: calc(66%);"></div>
+                <div class="vline" title="4" style="left: calc(100% - 5px);"></div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Phần tử nằm trên nhiều hàng/cột</h2>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-area: 2/1/4/3;</code>
+        </h3>
+        <div class="description">
+            Phần tử bắt đầu từ dây ngang-2 dọc-1 trải dài đến ngang-4 dọc-3
+        </div>
+        <div class="illustration">
+            <div class="grid_container s12">
+                <div class="special">Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="1"></div>
+                <div class="hline" title="2" style="top: calc(33% - 1px);"></div>
+                <div class="hline" title="3" style="top: calc(66% - 1px);"></div>
+                <div class="hline" title="4" style="top: calc(100% - 5px);"></div>
+                <div class="vline" title="1"></div>
+                <div class="vline" title="2" style="left: calc(33%);"></div>
+                <div class="vline" title="3" style="left: calc(66%);"></div>
+                <div class="vline" title="4" style="left: calc(100% - 5px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-row: 2/3;</code><br>
+            <code>2. grid-column: 1/span 3;</code>
+        </h3>
+        <div class="description">
+            <p>Khai báo <code>grid-column: 1/span 3;</code> có thể tạm dịch thành <q>bắt đầu từ dây số 1, nhảy tới 3 dây</q></p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s13">
+                <div class="special">Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div><div>Grid item 7</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="1"></div>
+                <div class="hline" title="2" style="top: calc(33% - 1px);"></div>
+                <div class="hline" title="3" style="top: calc(66% - 1px);"></div>
+                <div class="hline" title="4" style="top: calc(100% - 5px);"></div>
+                <div class="vline" title="1"></div>
+                <div class="vline" title="2" style="left: calc(33%);"></div>
+                <div class="vline" title="3" style="left: calc(66%);"></div>
+                <div class="vline" title="4" style="left: calc(100% - 5px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-area: 1 /  1 / span 1 / span 3;</code><br>
+        </h3>
+        <div class="description">
+            <p>Khai báo vắng tắt dùng <code>grid-area</code></p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s14">
+                <div class="special">Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div><div>Grid item 5</div><div>Grid item 6</div><div>Grid item 7</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="1"></div>
+                <div class="hline" title="2" style="top: calc(33% - 1px);"></div>
+                <div class="hline" title="3" style="top: calc(66% - 1px);"></div>
+                <div class="hline" title="4" style="top: calc(100% - 5px);"></div>
+                <div class="vline" title="1"></div>
+                <div class="vline" title="2" style="left: calc(33%);"></div>
+                <div class="vline" title="3" style="left: calc(66%);"></div>
+                <div class="vline" title="4" style="left: calc(100% - 5px);"></div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Đặt tên cho Dây trên lưới</h2>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-template-rows: [row1-start] 1fr [row2-start] 1fr;</code><br>
+            <code>2. grid-template-columns: [col1-start] 1fr [col2-start] 1fr;</code>
+        </h3>
+        <div class="description">
+            <p>Sau khi đặt tên cho dây trên lưới, chúng ta có thể khai báo vị trí của Grid-item theo tên của dây.</p>
+            <p>Như ví dụ bên phải, phần tử Grid item 4 được khai báo vị trí bằng tên của dây <code>grid-row: row1-start / row2-start;</code> và <code>grid-column: col1-start / col2-start;</code> thay vì sử dụng số thứ tự của dây</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s15a">
+                <div>Grid item 1</div>
+                <div>Grid item 2</div>
+                <div>Grid item 3</div>
+                <div class="special">Grid item 4 <br> <br>
+                    <code>
+                        grid-row: row1-start / row2-start;<br>
+                        grid-column: col1-start / col2-start;
+                    </code>
+                </div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="row1-start"></div>
+                <div class="hline" title="row2-start" style="top: calc(50% - 2.5px);"></div>
+                <div class="vline" title="col1-start"></div>
+                <div class="vline" title="col2-start" style="left: calc(50% - 2.5px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-template-rows: [row1-start] 1fr [row1-end row2-start] 1fr;</code><br>
+            <code>2. grid-template-columns: [col1-start] 1fr [col1-end col2-start] 1fr;</code>
+        </h3>
+        <div class="description">
+            <p>Một dây có thể được đặt nhiều tên cùng lúc</p>
+            <p>Nếu chúng ta đặt tên dòng và cột theo cú pháp [tên-track]-[start|end], chúng ta có thể sử dụng tên track để khai báo vị trí cho Grid-item. Như ví dụ bên, chúng ta chỉ cần khai báo <code>grid-row: row1;</code> và <code>grid-column: col1;</code> cũng có thể đạt được kết quả tương tự như ví dụ bên trên. </p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s15b">
+                <div>Grid item 1</div>
+                <div>Grid item 2</div>
+                <div>Grid item 3</div>
+                <div class="special">
+                    Grid item 4 <br><br>
+                    <code>
+                        grid-row: row1;<br>
+                        grid-column: col1;
+                    </code>
+                </div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="row1-start"></div>
+                <div class="hline" title="row1-end" style="top: calc(50% - 2.5px);"></div>
+                <div class="vline" title="col1-start"></div>
+                <div class="vline" title="col1-end" style="left: calc(50% - 2.5px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-template-rows: [cell1-start] 1fr [cell1-end] 1fr;</code><br>
+            <code>2. grid-template-columns: [cell1-start] 1fr [cell1-end] 1fr;</code>
+        </h3>
+        <div class="description">
+            <p>Nếu chúng ta đặt tên dây theo quy tắc [tên-ô]-[start|end] chúng ta có thể sử dụng tên ô để khai báo vị trí cho Grid-item. Như ví dụ bên, chúng ta chỉ cần khai báo <code>grid-area: cell1;</code> cũng có thể đạt được kết quả tương tự như ví dụ bên trên.</p>
+        </div>
+        
+        <div class="illustration">
+            <div class="grid_container s15c">
+                <div>Grid item 1</div>
+                <div>Grid item 2</div>
+                <div>Grid item 3</div>
+                <div class="special">
+                    Grid item 4 <br><br>
+                    <code>grid-area: cell1;</code>
+                </div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="row1-start"></div>
+                <div class="hline" title="row1-end" style="top: calc(50% - 2.5px);"></div>
+                <div class="vline" title="col1-start"></div>
+                <div class="vline" title="col1-end" style="left: calc(50% - 2.5px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. grid-auto-flow: row;</code><br>
+            <code>2. grid-template-rows: 3em 2em 5em 3em;</code><br>
+            <code>3. grid-template-columns: 1fr 10em;</code><br>
+            <code>4. grid-template-areas: "header header" "nav nav" "main aside" "footer footer";</code><br>
+        </h3>
+        <div class="description">
+            <p>
+                Tính năng đặt tên cho dây trên lưới giúp cho việc thiết kế giao diện responsive (tương thích thiết bị di động) được dễ dàng và tường minh hơn.
+            </p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s15">
+                <div title="header" class="header"><code>grid-area: header;</code></div>
+                <div title="nav" class="nav"><code>grid-area: nav;</code></div>
+                <div title="main" class="main"><code>grid-area: main;</code></div>
+                <div title="aside" class="aside"><code>grid-area: aside;</code></div>
+                <div title="footer" class="footer"><code>grid-area: footer;</code></div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>
+        Căn chỉnh Grid-item
+    </h2>
+    <p style="text-align: center;">Thuộc tính <code>justify-item</code> áp dụng trên Grid-container căn chỉnh các Grid-item theo trục ngang</p>
+    <p style="text-align: center;">Thuộc tính <code>align-item</code> áp dụng trên Grid-container căn chỉnh các Grid-item theo trục dọc</p>
+    <ul></ul>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-items: start;</code><br>
+            <code>2. align-items: start;</code>
+        </h3>
+        <div class="description">
+        <p><code>justify-items: start;</code> Grid-item được canh về phía trái của cột.</p>
+        <p><code>align-items: start;</code> Grid-item được canh về phía trên của dòng.</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s16">
+                <div>Grid item 1</div><div>Grid item 2</div>
+                <div>Grid item 3</div><div>Grid item 4</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="2" style="top: calc(4em);"></div>
+                <div class="vline" title="2" style="left: calc(150px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-items: center;</code><br>
+            <code>2. align-items: center;</code>
+        </h3>
+        <div class="description">
+        <p><code>justify-items: center;</code> Grid-item được canh về chính giữa của cột.</p>
+        <p><code>align-items: center;</code> Grid-item được canh về chính giữa của dòng.</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s17">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="2" style="top: calc(4em);"></div>
+                <div class="vline" title="2" style="left: calc(150px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-items: end;</code><br>
+            <code>2. align-items: end;</code>
+        </h3>
+        <div class="description">
+        <p><code>justify-items: end;</code> Grid-item được canh về phía cuổi của cột.</p>
+        <p><code>align-items: end;</code> Grid-item được canh về phía dưới của dòng.</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s18">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="2" style="top: calc(4em);"></div>
+                <div class="vline" title="2" style="left: calc(150px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-items: stretch;</code><br>
+            <code>2. align-items: start;</code>
+        </h3>
+        <div class="description">
+        <p><code>justify-items: auto|normal|stretch;</code> (mặc định là <code>stretch</code>) Grid-item được giãn ra dể lấp đầy không gian chiều ngang của ô chứa.</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s19">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="2" style="top: calc(4em);"></div>
+                <div class="vline" title="2" style="left: calc(150px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-items: start;</code><br>
+            <code>2. align-items: stretch;</code>
+        </h3>
+        <div class="description">
+        <p><code>align-items: auto|normal|stretch;</code> (mặc định là <code>stretch</code>) Grid-item được giãn ra dể lấp đầy không gian chiều dọc của ô chứa.</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s20">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="2" style="top: calc(4em);"></div>
+                <div class="vline" title="2" style="left: calc(150px);"></div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-items: ❓;</code><br>
+            <code>2. align-items: ❓;</code>
+        </h3>
+        <div class="description">
+            <p style="font-size: 60px;">🤔</p>
+        </div>
+        <div class="illustration">
+            <div class="grid_container s21">
+                <div>Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="2" style="top: calc(4em);"></div>
+                <div class="vline" title="2" style="left: calc(150px);"></div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Grid-item tự căn chỉnh vị trí</h2>
+    <p style="text-align: center;"><code>justify-self</code> - tự căn chỉnh vị trí theo chiều ngang của ô chứa</p>
+    <p style="text-align: center;"><code>align-self</code> - tự căn chỉnh vị trí theo chiều dọc của ô chứa</p>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-items: end;</code><br>
+            <code>2. align-self: stretch;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s22">
+                <div class="special">Grid item 1</div><div>Grid item 2</div><div>Grid item 3</div>
+                <div>Grid item 4</div>
+            </div>
+            <div class="grid_lines">
+                <div class="hline" title="2" style="top: calc(4em);"></div>
+                <div class="vline" title="2" style="left: calc(150px);"></div>
+            </div>
+        </div>
+    </article>
+    <hr>
+    <h2>Căn chỉnh khung lưới</h2>
+    <p style="text-align: center;"><code>justify-content</code> Căn chỉnh khung lưới theo chiều ngang của Grid-container</p>
+    <p style="text-align: center;"><code>align-content</code> Căn chỉnh khung lưới theo chiều dọc của Grid-container</p>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-content: start;</code><br>
+            <code>2. align-content: start;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s23">
+                <div>1</div><div>2</div><div>3</div>
+                <div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-content: center;</code><br>
+            <code>2. align-content: center;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s24">
+                <div>1</div><div>2</div><div>3</div>
+                <div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-content: end;</code><br>
+            <code>2. align-content: end;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s25">
+                <div>1</div><div>2</div><div>3</div>
+                <div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-content: space-around;</code><br>
+            <code>2. align-content: start;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s26">
+                <div>1</div><div>2</div><div>3</div>
+                <div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-content: space-between;</code><br>
+            <code>2. align-content: start;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s27">
+                <div>1</div><div>2</div><div>3</div>
+                <div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-content: space-evenly;</code><br>
+            <code>2. align-content: start;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s28">
+                <div>1</div><div>2</div><div>3</div>
+                <div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div>
+            </div>
+        </div>
+    </article>
+    <article>
+        <h3 style="font-size: 1.1em;">
+            <code>1. justify-content: space-evenly;</code><br>
+            <code>2. align-content: space-evenly;</code><br>
+        </h3>
+        <div class="description">
+        </div>
+        <div class="illustration">
+            <div class="grid_container s29">
+                <div>1</div><div>2</div><div>3</div>
+                <div>4</div><div>5</div><div>6</div>
+                <div>7</div><div>8</div><div>9</div>
+            </div>
+        </div>
+    </article>
+</body>
+</html>

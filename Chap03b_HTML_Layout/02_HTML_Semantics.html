@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi-VN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Grid Layout</title>
+    <style>
+        :root{
+            --grid-item-bg: #eee;
+        }
+        .content {
+            max-width: 960px;
+            margin: auto;
+            display: grid;
+            grid-template-rows: 120px auto 1fr 100px;
+            grid-template-columns: 7fr 3fr;
+            grid-template-areas: 
+                "header header"
+                "nav    nav"
+                "main   aside"
+                "footer footer";
+            gap: 15px;
+        }
+
+        .header, header {
+            background-color: var(--grid-item-bg);
+            grid-area: header;
+        }
+
+        .nav, nav {
+            background-color: var(--grid-item-bg);
+            grid-area: nav;
+        }
+
+        .sidebar, aside {
+            background-color: var(--grid-item-bg);
+            grid-area: aside;
+        }
+
+        .main, main {
+            background-color: var(--grid-item-bg);
+            grid-area: main;
+        }
+
+        .footer, footer {
+            background-color: var(--grid-item-bg);
+            grid-area: footer;
+        }
+        menu, div.menu{
+            display: grid;
+            grid-auto-flow: column;
+            align-items: center;
+            justify-items: start;
+            justify-content: start;
+            padding: 0px;
+            margin: 16px 0px;
+        }
+        menu > li, div.menu > div{
+            list-style: none;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <!-- Semantic HTML -->
+    <h1>Semantic HTML</h1>
+    <div class="content">
+        <header>Header - Nơi này chưa banner và slogan của trang</header>
+        <nav>
+            Navigation - Nơi này chứa thanh menu chính của trang <br>
+            <menu>
+                <li>link 1</li>
+                <li>link 2</li>
+                <li>link 3</li>
+            </menu>
+        </nav>
+        <aside>
+            Sidebar - Nơi này chứa nội dung phụ của trang <br>
+        </aside>
+        <main>
+            <p>Nơi này chứa nội dung chính của trang</p>
+            <section class="section1">
+                <h1>Tiêu đề h1 duy nhất của trang</h1>
+                <hr>
+                <article>
+                    <h2>article 1 (sử dụng h2)</h2>
+                    <h3>Tiêu đề nhỏ (sử dụng h3)</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium sint voluptatibus nesciunt exercitationem non dolorum pariatur architecto?</p>
+                    <h3>Tiêu đề nhỏ (sử dụng h3)</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate commodi sequi dolorum accusantium ad quidem sed saepe accusamus aspernatur totam soluta!</p>
+                </article>
+            </section>
+            <section class="section2">
+            </section>
+        </main>
+        <footer>Nơi này chứa footer của trang, thường bao gồm: thông tin chủ sở hữu, danh sách liên kết, bản đồ, thông tin liên hệ...</footer>
+    </div>
+    <hr style="margin-top: 40px; margin-bottom: 40px;">
+
+    <!-- Non-semantic HTML -->
+    <h1>Non-semantic HTML</h2>
+    <div class="content">
+        <div class="header">Header - Nơi này chưa banner và slogan của trang</div>
+        <div class="nav">
+            Navigation - Nơi này chứa thanh menu chính của trang <br>
+            <div class="menu">
+                <div>link 1</div>
+                <div>link 2</div>
+                <div>link 3</div>
+            </div>
+        </div>
+        <div class="sidebar">
+            Sidebar - Nơi này chứa nội dung phụ của trang <br>
+        </div>
+        <div class="main">
+            <p>Nơi này chứa nội dung chính của trang</p>
+            <div class="section1">
+                <h1>Tiêu đề h1 duy nhất của trang</h1>
+                <hr>
+                <div>
+                    <h2>article 1 (sử dụng h2)</h2>
+                    <h3>Tiêu đề nhỏ (sử dụng h3)</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium sint voluptatibus nesciunt exercitationem non dolorum pariatur architecto?</p>
+                    <h3>Tiêu đề nhỏ (sử dụng h3)</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate commodi sequi dolorum accusantium ad quidem sed saepe accusamus aspernatur totam soluta!</p>
+                </div>
+            </div>
+            <div class="section2">
+            </div>
+        </div>
+        <div class="footer">Nơi này chứa footer của trang, thường bao gồm: thông tin chủ sở hữu, danh sách liên kết, bản đồ, thông tin liên hệ...</div>
+    </div>
+    <hr>
+    <h1>Tại sao nên sử dụng Semantic HTML?</h2>
+    <p>
+        Mục tiêu của Semantic HTML là nó truyền đạt rõ ràng ý nghĩa của mã nguồn HTML của trang web cho cả nhà phát triển và trình duyệt. Một số lợi ích của việc sử dụng "thẻ có nghĩa" trong HTML:
+    </p>
+    <ul>
+        <li>Các thẻ HTML có nghĩa giúp các công cụ tìm kiếm và các thiết bị hỗ trợ người dùng khác xác định đúng cấu trúc, tầm quan trọng và ngữ cảnh của các thành phần trong trang web.</li>
+        <li>Mã nguồn trang web dễ đọc, dẽ hiểu, dễ quản lý, dễ bảo trì</li>
+    </ul>
+</body>
+
+</html>
