@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript - Bài tập 1</title>
+    <script src="00_Bai_tap1.js"></script>
+    <style>
+        article{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 20px;
+        }
+        form{
+            background-color: aliceblue;
+            padding: 10px;
+        }
+        form .inputGroup{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(12ch,1fr));
+            column-gap: 10px;
+            margin: 10px 0px;
+        }
+        .inputGroup > label{
+            justify-self: start;
+        }
+        form > .buttonGroup{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <article>
+        <form id="form" action="#" method="post" novalidate>
+            <h2>Đăng ký tài khoản</h2>
+            <div class="inputGroup">
+                <label for="name">Tên của bạn</label>
+                <input type="text" name="name" id="name" placeholder="Nhập tên từ 4-20 ký tự">
+            </div>
+            <div class="inputGroup">
+                <label for="yearOfBirth">Năm sinh</label>
+                <input type="number" name="yearOfBirth" id="yearOfBirth" placeholder="Nhập năm sinh">
+            </div>
+            <div class="inputGroup">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Nhập địa chỉ email">
+            </div>
+            <div class="acceptTerm">
+                <label for="acceptTerm">
+                    <input type="checkbox" name="acceptTerm" id="acceptTerm" value="accept">
+                    Tôi đồng ý với các điều khoản của trang web</label>
+            </div>
+            <div class="buttonGroup">
+                <button type="reset">Làm lại</button>
+                <button type="submit" name="submit" value="submit">Đăng ký</button>
+            </div>
+        </form>
+        <div>
+            <h2>Yêu cầu</h2>
+            <ol>
+                <li>Viết hàm JS kiểm tra ô tên cho phép người dùng nhập từ 4-20 ký tự. Gợi ý: sử dụng thuộc tính value để truy xuất giá trị của input. Kiểm tra độ dài bằng thuộc tính length.</li>
+                <li>Viết hàm JS kiểm tra tuổi người dùng phải >= 18 tuổi.</li>
+                <li>Viết hàm JS kiểm tra email người sử dụng phải đúng định dạng. Gợi ý: sử dụng Regular Expression             <a target="_blank" href="https://www.w3schools.com/jsref/jsref_obj_regexp.asp">https://www.w3schools.com/</a>
+                </li>
+                <li>Kiểm tra nếu người sử dụng nhấn nút Đăng ký mà chưa check vào ô "Tôi đồng ý với các điều khoản của trang web" thì không cho thực hiện. Gợi ý: sử dụng sự kiện onsubmit trên form; kiểm tra checkbox có được check hay không bằng thuộc tính checked.</li>
+            </ol>
+        </div>
+    </article>
+</body>
+</html>

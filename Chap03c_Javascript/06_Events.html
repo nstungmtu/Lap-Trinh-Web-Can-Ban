@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06. Sự kiện HTML trong Javascript</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+</head>
+<body>
+    <h1>Sự kiện HTML</h1>
+    <p>Sự kiện HTML là những sự kiện xảy ra đối với tài liệu HTML hoặc với các phần tử trong tài liệu HTML. Các sự kiện này có thể được kích hoạt bới người sử dụng hoặc bởi trình duyệt web. Ví dụ:</p>
+    <ul>
+        <li>Sự kiện trang web đã tải xong</li>
+        <li>Sự kiện người dùng nhấn vào một nút trên form</li>
+        <li>Sự kiện người dùng nhập giá trị vào ô input</li>
+    </ul>
+    <hr>
+    <h2>Khai báo sự kiện HTML</h2>
+    <button id="test1">Khai báo kiểu 1</button>
+    <button id="test2">Khai báo kiểu 2</button>
+    <button id="test3">Khai báo kiểu 3</button>
+    <button id="test4">Khai báo kiểu 4</button>
+    <button id="test5" onclick="clickHandler_inline(this)">Khai báo kiểu inline</button>
+    <p>Sự kiện có thể khai báo trực tiếp trong thuộc tính của phần tử HTML</p>
+<pre><code>&lt;button onclick=&quot;window.alert(&apos;Hello!&apos;)&quot;&gt;N&oacute;i xin ch&agrave;o!&lt;/button&gt;
+</code></pre>
+    <p>hoặc được khai báo từ Javascript</p>
+<pre><code>//Khai báo kiểu inline
+&lt;button id=&quot;test5&quot; onclick=&quot;clickHandler_inline(this)&quot;&gt;Khai b&aacute;o ki&#x1EC3;u inline&lt;/button&gt;
+//JS code
+function clickHandler_inline(element){
+    console.log(element);
+    alert(element.innerText);
+}
+
+
+//Khai báo kiểu 1
+document.getElementById("test1").
+    addEventListener("click", function(){window.alert("Khai báo kiểu 1")});
+//Khai báo kiểu 2
+document.getElementById("test2").
+    onclick = function(){window.alert("Khai báo kiểu 2")};
+//Khai báo kiểu 3
+document.getElementById("test3").
+    addEventListener("click", clickHandler);
+//Khai báo kiểu 3
+document.getElementById("test4").
+    onclick = clickHandler;    
+//Hàm xử lý sự kiện
+function clickHandler(event){
+    console.log(event);
+    alert(event.target.innerText);
+}
+</code></pre>
+<h2>Một số sự kiện phổ biến</h2>
+<table style="width: 100%" cellspacing="0px">
+    <tbody>
+        <tr>
+            <th>Sự kiện</th>
+            <th>Mô tả</th>
+        </tr>
+        <tr>
+            <td>onchange</td>
+            <td>Khi giá trị thuộc tính <code>value</code> của phần tử thay đổi</td>
+        </tr>
+        <tr>
+            <td>onclick</td>
+            <td>Khi người dùng nhấn chuột vào phần tử</td>
+        </tr>
+        <tr>
+            <td>onmouseover</td>
+            <td>Khi người dùng đưa con trỏ chuột từ bên ngoài vào phần tử</td>
+        </tr>
+        <tr>
+            <td>onmouseout</td>
+            <td>Khi người dùng đưa trỏ chuột ra khỏi phần tử</td>
+        </tr>
+        <tr>
+            <td>onkeydown</td>
+            <td>Khi người dùng nhấn một nút trên bàn phím</td>
+        </tr>
+        <tr>
+            <td>onload</td>
+            <td>Khi trình duyệt tải xong toàn bộ nội dung trang web (áp dụng trên phần tử <code>window</code>)</td>
+        </tr>
+        <tr>
+            <td>onreadystatechange</td>
+            <td>Khi tài liệu HTML thay đổi trạng thái sẵn sàng (trạng thái tải nội dung). Áp dụng trên phần tử <code>document</code></td>
+        </tr>
+    </tbody>
+</table>
+<h2>Sự kiện readystatechange, load</h2>
+<pre><code>
+let logText = "";
+window.onload = function(){
+    logText += Date.now() + " - " + "window.onload \n";
+    const log = document.querySelector("#log");
+    log.value = logText;
+};
+document.addEventListener("readystatechange", logDocumentState);
+function logDocumentState(){
+    switch(document.readyState){
+        case "loading":{
+            //Tài liệu đang trong quá trình tải.
+            //Chưa thể dùng Javascript để truy xuất các phần tử DOM
+            logText += Date.now() + " - " + document.readyState + " - " + "Document is loading \n";
+            break;
+        }
+        case "interactive":{
+            //Mã nguồn HTML của trang đã tải xong, có thể truy xuất các phần tử DOM
+            //Các tài liệu liên kết ngoài bắt đầu được tải (tập tin CSS, Javascript, ảnh, ...).
+            logText += Date.now() + " - " + document.readyState + " - " + "DOM is finished \n";
+            break;
+        }
+        case "complete":{
+            //Các tài liệu liên kết ngoài đã tải xong.
+            //Kích hoạt sự kiện window.load
+            logText += Date.now() + " - " + document.readyState + " - " + "Document is fully-loaded \n";
+            break;
+        }
+    }
+}
+//Lấy trạng thái loading của document
+logDocumentState();
+</code></pre>
+<iframe src="06a_ReadyStateChange.html" frameborder="0" width="100%"></iframe>
+
+<h2>Tham khảo các sự kiện HTML DOM</h2>
+<p>Xem thêm tại <a href="https://www.w3schools.com/jsref/dom_obj_event.asp">https://www.w3schools.com/jsref/dom_obj_event.asp</a></p>
+<script>
+    //Khai báo kiểu 1
+    document.getElementById("test1").
+        addEventListener("click", function(){window.alert("Khai báo kiểu 1")});
+    //Khai báo kiểu 2
+    document.getElementById("test2").
+        onclick = function(){window.alert("Khai báo kiểu 2")};
+    //Khai báo kiểu 3
+    document.getElementById("test3").
+        addEventListener("click", clickHandler);
+    //Khai báo kiểu 3
+    document.getElementById("test4").
+        onclick = clickHandler;    
+    //Hàm xử lý sự kiện
+    function clickHandler(event){
+        console.log(event);
+        alert(event.target.innerText);
+    }
+    function clickHandler_inline(element){
+        console.log(element);
+        alert(element.innerText);
+    }
+</script>
+</body>
+</html>

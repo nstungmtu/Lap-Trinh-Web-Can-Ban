@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03. Ngôn ngữ lập trình Javascript</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+</head>
+<body>
+    <h1>Ngôn ngữ lập trình Javascript</h1>
+    <hr>
+    <h2>Chương trình Javascript</h2>
+    <p>Chương trình máy tính là một danh sách các chỉ thị được thực thi bởi máy tính.</p>
+    <p>Trong một ngôn ngữ lập trình, các chỉ thị này được gọi là câu lệnh</p>
+    <p>Một chương trình Javascript bao gồm các câu lệnh lập trình viết bằng ngôn ngữ lập trình Javascript. Chương trình Javascript trong tài liệu HTML được thực thi bởi trình duyệt.</p>
+    <h2>Sử dụng dấu <code>;</code></h2>
+    <p>Dấu <code>;</code> ngăn cách các câu lệnh Javascript.</p>
+<pre><code>let a,b,c; //Khai báo 3 biến
+a = 1; //Gán giá trị 1 cho biến a
+b = 2; //Gán giá trị 2 cho biến b
+c = a + b; //Gán giá trị c bằng tổng của a và b
+</code></pre>
+    <p>Sau khi được ngăn cách bằng dấu <code>;</code>, các câu lệnh có thể được viết trên cùng một dòng.</p>
+<pre><code>let a,b,c; a = 1; b = 2; c = a + b;
+</code></pre>
+    <h2>Ngắt dòng trong Javascript</h2>
+    <p>Javascript cho phép chúng ta ngắt dòng sau toán tử để mã nguồn dễ đọc hơn.</p>
+<pre><code>console.log(
+    "Xim chào " + 
+    "Người bạn tốt" 
+);
+</code></pre>
+    <h2>Sử dụng dấu nháy <code>'</code> hoặc <code>"</code></h2>
+    <p>Javascript có thể sử dụng cả dấu nháy đơn <code>'</code> và dấu nháy kép <code>"</code> để đóng chuỗi ký tự.</p>
+<pre><code>console.log("Xin chào 'Joe'!")//Xin chào 'Joe'!
+console.log('Xin chào "Joe"!')//Xin chào "Joe"!
+</code></pre>
+    <h2>Khai báo biến</h2>
+<pre><code>var a = 2; //Khai báo biến số, kiểu khai báo đã lỗi thời
+let b = 3; //Khai báo biến số
+let c = b + a; //Khai báo biến số kèm theo lệnh gán
+const d = 10; //Khai báo biến bắt buộc kèm theo lệnh gán, không cho gán lại giá trị sau khi khai báo.
+//Lệnh const thường được dùng để khai báo mới một Array, Object, Function, RegExp.
+//Lệnh const thực chất không tạo một hằng số, mà là tạo một tham chiếu tĩnh đến một giá trị,
+//Javascript chỉ ngăn không cho bạn thay đổi tham chiếu này, bản thân giá trị
+//vẫn có thể thay đổi theo cách của riêng của nó. Ví dụ: thay đổi các phần tử trong Array.
+</code></pre>
+    <h2>Đặt tên trong Javascript</h2>
+    <p>Tên định danh (tên biến, tên hàm) trong Javascript phải bắt đầu bằng chữ cái (a, b, A, B), dấu "$" hoặc dấu "_", không được bắt đầu bằng số. Tên định danh có thể bao gồm chữ cái, số, và dấu "_".</p>
+    <p>Một số cách ghép từ khi đặt tên:</p>
+    <ul>
+        <li>Sử dụng dấu "_": first_name, last_name, class_name</li>
+        <li>Viết hoa ký tự đầu: FirstName, LastName, ClassName</li>
+        <li>Viết hoa ký tự đầu trừ từ đầu tiên: firstName, lastName, className (được sử dụng thông dụng nhất bởi các lập trình viên và các nền tảng Javascript)</li>
+    </ul>
+    <h2>Phép toán số học trong Javascript</h2>
+<pre><code>let a = 2 + 2; //a = 4
+let b = 2 - 2; //b = 0
+let c = 2 * 4; //c = 8
+let d = 2 ** 4; //d = 16
+let e = 4 / 2; //e = 2
+let f = 5 % 3; //f = 2
+let g = 2; a++; //g = 3
+let h = 2; h--; //h = 1
+</code></pre>
+    <h2>Lệnh gán trong Javascript</h2>
+<pre><code>let x = 10;
+x += 1; //x = x + 1 = 11
+x -= 1; //x = x - 1 = 10
+x *= 2; //x = x * 2 = 20
+x /= 2; //x = x / 2 = 10
+x %= 4; //x = x % 4 = 2
+x **= 4; //x = x ** 4 = 16
+
+let a=1; b=2;
+[a,b]=[b, b+a];//a=2,b=3
+</code></pre>
+    <h2>Lệnh so sánh</h2>
+<pre><code>let i = 10;
+console.log(i == 10);//true
+console.log(i === 10);//true
+console.log(i == "10");//true
+console.log(i === "10");//false
+</code></pre> 
+    <h2>Vòng lặp</h2>
+<pre><code>//Vòng lặp for
+for(let i = 0; i <= 10; i++){
+    console.log(i);
+}
+
+//Vòng lặp while
+let i=0;
+while(i <= 10){
+    console.log(i++);
+}
+
+//continue, break
+for(let i = 0; i <= 10; i++){
+    if(i%2 == 0) console.log(i);
+    else continue;
+    if(i >= 8) break;
+}
+</code></pre>
+    <h2>Lệnh rẽ nhánh</h2>
+<pre><code>
+let i = 10;
+if(i > 5){
+    console.log("i > 5");
+}
+else{
+    if(i < 3) console.log("i < 3");
+    else console.log("3 <= i <= 5");
+}
+
+
+switch((new Date()).getDay()){//0..6
+    default:
+        console.log("Chủ nhật");
+        break;
+    case 1:
+        console.log("Thứ hai");
+        break;
+    case 2:
+        console.log("Thứ ba");
+        break;
+    case 3:
+        console.log("Thứ tư");
+        break;
+    case 4:
+        console.log("Thứ năm");
+        break;
+    case 5:
+        console.log("Thứ sáu");
+        break;
+    case 6:
+        console.log("Thứ bảy");
+        break;
+}
+
+
+switch((new Date()).getDay()){//0..6
+    default:
+        console.log("Ngày cuối tuần");
+        break;
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+        console.log("Ngày trong tuần");
+        //break; lệnh break ở cuối cùng không cần thiết
+}
+
+
+let rates = 5;
+let printRates = "";
+switch(5 - rates){//0..5
+    default:
+        printRates += "👎";
+    case 0:
+        printRates += "⭐";
+    case 1:
+        printRates += "⭐";
+    case 2:
+        printRates += "⭐";
+    case 3:
+        printRates += "⭐";;
+    case 4:
+        printRates += "⭐";
+}
+console.log(printRates);
+
+</code></pre>
+<h2>try, catch, finally, throw</h2>
+<pre><code>
+let i = 10;
+try{
+    if(i < 10) throw "i < 10";
+    //nếu i < 10, các dòng code bên dưới sẽ không thực thi
+    console.log("i >= 10");
+}
+catch(exception){
+    console.log(exception)//Nếu i nhỏ hơn 10, sẽ in ra dòng chữ "i < 10"
+}
+finally{
+    //đoạn mã này luôn được thực thi
+    console.log("Đã kiểm tra i = " + i);
+}
+</code></pre>
+</body>
+</html>

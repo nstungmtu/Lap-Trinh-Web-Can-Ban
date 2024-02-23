@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10. XHR</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>XMLHttpRequest Object</h1>
+<p><code>XMLHttpRequest</code> được dùng để truy xuất hoặc cập nhật dữ liệu trên webserver. Nó thường được dùng để cập nhật nội dung của một phần trang web mà không cần phải tải lại trang.</p>
+<article>
+    <h2>Ví dụ</h2>
+<pre><code>
+document.getElementById("xhrTestBtn").onclick = function(){
+    //Hàm khởi tạo cần được thực thi trước
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("xhrTestTxt").value = xhr.responseText;
+        }
+    };
+    xhr.open("GET", "10_testTXT.txt", true);
+    xhr.send();
+}
+</code></pre>
+    <div>
+        <form action="">
+            <input type="text" id="xhrTestTxt" placeholder="Chưa có dữ liệu">
+            <button id="xhrTestBtn" type="button">▶️ Nhấn để tải dữ liệu</button>
+            <button type="reset">❌ Xóa dữ liệu</button>
+        </form>
+    </div>
+</article>
+<hr>
+<article>
+    <h2>Các thuộc tính</h2>
+    <details open>
+        <summary><code>XMLHttpRequest.readyState</code> (read only)</summary>
+        <p>Trả về một số là ký hiệu trạng thái của yêu cầu</p>
+        <table>
+            <tr>
+                <th>Giá trị</th><th>Trạng thái</th><th>Mô tả</th>
+            </tr>
+            <tr>
+                <td>0</td><td>UNSENT</td><td>Yêu cầu đã được khởi tạo</td>
+            </tr>
+            <tr>
+                <td>1</td><td>OPENED</td><td>Hàm <code>open</code> đã được gọi. Cho phép thiết lập các tham số của yêu cầu.</td>
+            </tr>
+            <tr>
+                <td>2</td><td>HEADERS_RECEIVED</td><td>Yêu cầu đã được gửi đi bởi hàm <code>send</code></td>
+            </tr>
+            <tr>
+                <td>3</td><td>LOADING</td><td>Đang tải nội dung phản hồi từ phía máy chủ</td>
+            </tr>
+            <tr>
+                <td>4</td><td>DONE</td><td>Yêu cầu đã hoàn thành.</td>
+            </tr>
+        </table>
+        <h3>Ví dụ</h3>
+<pre><code>
+const xhr = new XMLHttpRequest();
+console.log("UNSENT", xhr.readyState); // readyState = 0
+
+xhr.open("GET", "10_testTXT.txt", true);
+console.log("OPENED", xhr.readyState); // readyState = 1
+
+xhr.onprogress = () => {
+    console.log("LOADING", xhr.readyState); // readyState = 3
+};
+
+xhr.onload = () => {
+    console.log("DONE", xhr.readyState); // readyState = 4
+    console.log(xhr.responseText); //in nội dung phản hồi từ máy chủ
+};
+
+xhr.send(null);
+</code></pre>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.responseType</code></summary>
+        <p>Chỉ định kiểu dữ liệu phản hồi của máy chủ</p>
+        <table>
+            <tr><th>Giá trị</th><th>Mô tả</th></tr>
+            <tr><td>"","text"</td><td>Mặc định là kiểu <code>text</code></td></tr>
+            <tr><td>"arraybuffer"</td><td>Kiểu dữ liệu nhị phân chứa trong đối tượng <code>ArrayBuffer</code></tr>
+            <tr><td>"blob"</td><td>Kiểu dữ liệu nhị phân chứa trong đối tượng <code></code></tr>
+            <tr><td>"document"</td><td>Dữ liệu máy chủ trả về là một đoạn mã HTML</tr>
+            <tr><td>"json"</td><td>Dữ liệu máy chủ trả về là một đối tượng kiểu JSON (JavaScript Object Notation - đối tượng Javascript mã hóa bằng ký tự)</tr>
+        </table>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.response</code> (read only)</summary>
+        <p>Trả về kết quả phản hồi của máy chủ dưới kiếu dữ liệu được quy định bởi thuộc tính <code>responseType</code></p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.responseText</code> (read only)</summary>
+        <p>Trả về kết quả phản hồi của máy chủ dưới dạng text</p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.responseURL</code> (read only)</summary>
+        <p>Trả về URL (Uniform Resource Locator - địa chỉ) của phản hồi</p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.responseXML</code> (read only)</summary>
+        <p>Trả về kết quả phản hồi dưới dạng đối tượng <code>Document</code></p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.status</code> (read only)</summary>
+        <p>Trả về mã phản hồi của máy chủ. Tham khảo danh sách mã phản hồi tại <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">https://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a></p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.statusText</code> (read only)</summary>
+        <p>Trả về mã phản hồi của máy chủ dưới dạng mô tả.</p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.timeout</code></summary>
+        <p>Đặt giới hạn thời gian thực hiện yêu cầu (tính bằng milisecond).</p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.upload</code> (read only)</summary>
+        <p>Trả về đối tượng <code>XMLHttpRequestUpload</code> giúp truy xuất trạng thái upload của yêu cầu (trường hợp trong nội dung yêu cầu có chứa tập tin). <code>XMLHttpRequestUpload</code> cung cấp các sự kiện phản ánh tình trạng upload của yêu cầu gồm:</p>
+        <dl>
+            <dt><code>abort</code></dt>
+            <dd>Kích hoạt khi việc upload bị hủy bỏ thông qua gọi hàm <code>XMLHttpRequest.abort()</code></dd>
+            <dd>
+<pre><code>const xhr = new XMLHttpRequest();
+const upload = xhr.upload;
+upload.addEventListener("abort", (event) => {});//Khai báo bằng addEventListener
+upload.onabort = (event) => {};//Khai báo bằng on...
+</code></pre>
+            </dd>
+            <dt><code>error</code></dt>
+            <dd>Kích hoạt khi việc upload gặp lỗi</dd>
+            <dd>
+<pre><code>addEventListener("error", (event) => {});
+onerror = (event) => {};
+</code></pre>
+            </dd>
+            <dt><code>load</code></dt>
+            <dd>Kích hoạt khi việc tải lên hoàn tất</dd>
+            <dd>
+<pre><code>addEventListener("load", (event) => {});
+onload = (event) => {};
+</code></pre>
+            </dd>
+            <dt><code>loadend</code></dt>
+            <dd>Kích hoạt khi việc tải lên kết thúc bởi bất kỳ hình thức nào: abort, error, load</dd>
+            <dd>
+<pre><code>addEventListener("loadend", (event) => {});
+onloadend = (event) => {};
+</code></pre>
+            </dd>
+            <dt><code>loadstart</code></dt>
+            <dd>Kích hoạt khi dữ liệu bắt đầu được tải</dd>
+            <dd>
+<pre><code>addEventListener("loadstart", (event) => {});
+onloadstart = (event) => {};
+</code></pre>
+            </dd>
+            <dt><code>progress</code></dt>
+            <dd>Kích hoạt định kỳ bởi trình duyệt trong suốt quá trình upload dữ liệu</dd>
+            <dd>
+<pre><code>xhr.upload.addEventListener("progress", (event) => {
+    console.log("Uploading " + ((event.loaded/event.total)*100) + "%");
+});
+</code></pre>
+            </dd>
+            <dt><code>timeout</code></dt>
+            <dd>Kích hoạt khi việc tải lên vượt quá giới hạn thời gian theo thiết lập tham số <code>timeout</code></dd>
+            <dd>
+<pre><code>addEventListener("timeout", (event) => {});
+ontimeout = (event) => {};
+</code></pre>
+            </dd>
+        </dl>
+    </details>
+</article>
+<hr>
+<article>
+    <h2>Các hàm</h2>
+    <details open>
+        <summary><code>XMLHttpRequest.abort()</code></summary>
+        <p>Hủy yêu cầu khi nó đã được gửi đi nhưng chưa hoàn thành</p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.getAllResponseHeaders()</code></summary>
+        <p>Trả về tất cả response header</p>
+        <h3>Ví dụ:</h3>
+        <p>
+            date: Fri, 08 Jan 2024 21:04:30 GMT<br>
+            content-encoding: gzipbr>
+            x-content-type-options: nosniff<br>
+            server: meinheld/0.6.1<br>
+            x-frame-options: DENY<br>
+            content-type: text/html; charset=utf-8<br>
+            connection: keep-alive<br>
+            strict-transport-security: max-age=63072000<br>
+            vary: Cookie, Accept-Encoding<br>
+            content-length: 6502<br>
+            x-xss-protection: 1; mode=block<br>
+        </p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.getResponseHeader("headerKey")</code></summary>
+        <p>Trả về response header theo headerKey. Ví dụ: <code>getResponseHeader("Content-Type")</code></p>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.open()</code></summary>
+        <p>Khởi tạo XMLHttpRequest.</p>
+        <h3>Cú pháp</h3>
+        <p><pre><code>open(method, url, async, user, password)</code></pre></p>
+        <dl>
+            <dt><code>method</code></dt>
+            <dd>Phương thức gửi: "GET", "POST", "PUT", "DELETE"</dd>
+            <dt><code>url</code></dt>
+            <dd>Địa chỉ URL của máy chủ web</dd>
+            <dt><code>async</code> (optional, default:true)</dt>
+            <dd>Bật/tắt chế độ bất đồng bộ</dd>
+            <dt><code>username, password</code> (optional, default:null)</dt>
+            <dd>Tài khoản/mật khẩu để xác thực phía máy chủ web</dd>
+        </dl>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.send()</code></summary>
+        <p>Gửi yêu cầu đến máy chủ</p>
+        <h3>Cú pháp</h3>
+        <p><pre><code>send(body)</code></pre></p>
+        <dl>
+            <dt><code>body</code> (optional, default:null)</dt>
+            <dd>Dữ liệu được gửi trong yêu cầu.</dd>
+            <dd><code>body</code> có thể là một <code><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Blob">Blob</a></code>, một <code><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a></code>, một <code><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a></code>, một <code><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">URLSearchParams</a></code>, một chuỗi hoặc một object</dd>
+        </dl>
+    </details>
+    <details open>
+        <summary><code>XMLHttpRequest.setRequestHeader()</code></summary>
+        <p>Thiết lập request header. Hàm này được sử dụng sau hàm <code>open()</code></p>
+        <h3>Cú pháp</h3>
+        <p><pre><code>setRequestHeader(headerKey, headerValue)</code></pre></p>
+        <dl>
+            <dt><code>headerKey</code></dt>
+            <dd>Tên header.</dd>
+            <dt><code>headerValue</code></dt>
+            <dd>Giá trị của header</dd>
+        </dl>
+    </details>
+</article>
+<script src="10.js"></script>
+</body>
+</html>

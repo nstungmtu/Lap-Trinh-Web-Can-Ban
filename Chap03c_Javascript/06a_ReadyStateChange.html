@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReadyStateChange</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+        let logText = "";
+        //Khai báo sự kiện onload cho window (cửa sổ trình duyệt)
+        window.onload = function(){
+            logText += Date.now() + " - " + "window.onload \n";
+            const log = document.querySelector("#log");
+            log.value = logText;
+        };
+        //Khai báo sự kiện readystatechange cho document
+        document.addEventListener("readystatechange", logDocumentState);
+        function logDocumentState(){
+            switch(document.readyState){
+                case "loading":{
+                    //Tài liệu đang trong quá trình tải.
+                    //Chưa thể dùng Javascript để truy xuất các phần tử DOM
+                    logText += Date.now() + " - " + document.readyState + " - " + "Document is loading \n";
+                    break;
+                }
+                case "interactive":{
+                    //Mã nguồn HTML của trang đã tải xong, có thể truy xuất các phần tử DOM
+                    //Các tài liệu liên kết ngoài bắt đầu được tải (tập tin CSS, Javascript, ảnh, ...).
+                    logText += Date.now() + " - " + document.readyState + " - " + "DOM is finished \n";
+                    break;
+                }
+                case "complete":{
+                    //Các tài liệu liên kết ngoài đã tải xong.
+                    //Kích hoạt sự kiện window.load
+                    logText += Date.now() + " - " + document.readyState + " - " + "Document is fully-loaded \n";
+                    break;
+                }
+            }
+        }
+        //Lấy trạng thái loading của document
+        logDocumentState();
+    </script>
+</head>
+<body>
+    <label for="log">Sự kiện readystatechange:</label>
+    <button id="reload" onclick="window.location.reload()">Tải lại</button><br>
+    <textarea name="log" id="log" cols="60" rows="5"></textarea>
+</body>
+</html>

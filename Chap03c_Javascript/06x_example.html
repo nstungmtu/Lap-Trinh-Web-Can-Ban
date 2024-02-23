@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        try{
+            //Dòng này sẽ báo lỗi
+            console.log(document.querySelector("#test").value);
+        }
+        catch(e){
+            console.log(e);
+        }
+        //Dòng này sẽ hoạt động
+        window.onload = function(){
+            const btnTest = document.querySelector("#test");
+            console.log(btnTest.value + " - window.load");
+        };
+    </script>
+</head>
+<body>
+    <button id="test" value="Hello!">Hello!</button>
+</body>
+</html>

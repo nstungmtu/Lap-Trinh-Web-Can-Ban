@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08. HTMl Promises</title>
+    <script src="09.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</head>
+<body>
+<h1>Promise, async và await</h1>
+<p>Khi một hàm được khai báo dạng <code>async</code>, kết quả trả về của nó sẽ được bọc trong một <code>Promise</code>.</p>
+<p>Một <code>Promise</code> cho phép đoạn mã phía sau nó được thực thi mà không cần phải đợi kết quả của <code>Promise</code> (async = bất đồng bộ). Khi sử dụng <code>await</code> (chờ đợi) trước lời gọi một hàm <code>async</code>, chương trình sẽ đợi đến khi hàm <code>async</code> trả về kết quả rồi mới thực thi các câu lệnh kế tiếp (đồng bộ).</p>
+<p>Một <code>Promise</code> cho phép chúng ta kiểm soát được trạng thái kết quả trả về là <code>resolved</code> (thành công) hay <code>rejected</code> (thất bại).</p>
+<p><code>Promise</code> còn cho phép chúng ta sử dụng kỹ thuật <code>Function chaining</code> giúp mã nguồn ngắn gọn hơn và dễ đọc, dễ hiểu hơn.</p>
+</body>
+</html>

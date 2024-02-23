@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 - Kiểu dữ liệu trong Javascript</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+</head>
+<body>
+    <h1>Kiểu dữ liệu trong Javascript</h1>
+    <hr>
+    <p>Các kiểu dữ liệu trong Javascript</p>
+    <ol>
+        <li>String - kiểu chuỗi</li>
+        <li>Number - kiểu số</li>
+        <li>Bigint - số nguyên lớn</li>
+        <li>Boolean- true, false</li>
+        <li>Undefined - không có giá trị</li>
+        <li>Null - rỗng</li>
+        <li>Object (object, Array, Date)</li>
+    </ol>
+<pre><code>//Kiểu số
+let x; //x = undefined
+x = 10; //Số nguyên
+let y = 15.5; //Số thập phân
+let z = 21e5; //21 * 10^5 = 2100000
+let inf = Infinity //số vô cùng
+
+//Kiểu số thông thường được Javascript lưu dưới định dạng dấu phẩy động 64-bit.
+//Để lưu số nguyên lớn, ta sử dụng:
+let bigX = BigInt("123456789012345678901234567890");
+
+//Kiểu chuỗi
+let car = "Toyota";
+let model = "Corola";
+let carModel = car + " " + model; //Toyota Corola
+let carModelYear = carModel + " " + 2023; //Toyota Corola 2023
+carModelYear = carModel + 2023 + 1; //Toyota Corola 20231
+carModelYear = 2022 + 1 + " " + carModel; //2023 Toyota Corola
+
+//String template
+let firstName = "Dolores", lastName = "Abernathy";
+console.log(`Hello ${firstName} ${lastName}`);//Hello Dolores Abernathy
+
+let price = 100, VAT = 0.05;
+console.log(`Total: ${price * (1 + VAT)}`); //105
+
+let html = &grave;&lt;ul&gt;&grave;;
+for(let i = 1; i &lt; 3; i++){
+    html += &grave;&lt;li&gt;${i}&lt;/li&gt;&grave;;
+}
+html += &grave;&lt;/ul&gt;&grave;;
+console.log(html);
+//Tham khảo thêm các hàm String
+//https://www.w3schools.com/js/js_string_methods.asp
+
+//Kiểu boolean
+let passed = true;
+let failed = false;
+
+//Kiểu Object
+const student = {
+    firstName:"Dolores", 
+    lastName:"Abernathy", 
+    class:{
+        name:"Software Engineering", 
+        year:2023
+    }};
+for(let i in student){
+    console.log(i); //firstName, lastName, class
+    console.log(student[i]); //Dolores, Abernathy, ...
+}
+
+//Kiểu Array
+const cars = ["Toyota", "Chevrolet", "Hyundai"];
+for(let i in cars){
+    console.log(i);//0,1,2
+}
+for(let i in cars){
+    console.log(cars[i]);//Toyota, Chevrolet, Hyundai
+}
+for(let i of cars){
+    console.log(i);//Toyota, Chevrolet, Hyundai
+}
+cars.forEach(function(value, index, array){
+    console.log(value);//Toyota, Chevrolet, Hyundai
+    console.log(index);//0,1,2
+    console.log(array);//mảng cars
+});
+//Tham khảo thêm các hàm Array
+//https://www.w3schools.com/js/js_array_methods.asp
+
+//Kiểu Date Object
+const date1 = new Date();//Tạo Dateobject của thời điểm hiện tại
+const date2 = new Date("2024-12-31");//Tạo Dateobject theo ngày chỉ định
+</code></pre>
+</body>
+</html>

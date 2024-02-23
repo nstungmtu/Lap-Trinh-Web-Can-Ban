@@ -1,0 +1,79 @@
+:root{
+    --accent-color: #d81988;
+}
+*{
+    box-sizing: border-box;
+}
+body{
+    max-width: 960px;
+    margin: 0px;
+    padding: 10px;
+    margin: 0px auto;
+}
+code{
+    background-color: #eee;
+    color: var(--accent-color);
+}
+hr{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+table{
+    border: 1px solid #eee;
+}
+table tr:nth-child(even){
+    background-color: #efefef;
+}
+th{
+    text-align: left;
+    padding: 5px;
+    margin: 0px;
+}
+td{
+    padding: 5px;
+    margin: 0px;
+}
+/* Ví dụ 1 */
+.vd1{
+    display: inline-block;
+    width: 70px;
+    height: 120px;
+    background-image: url(img/light-bulbs.jpg);
+    background-size: auto 200%;
+    background-repeat: no-repeat;
+}
+.vd1[data-bgpos="2"]{
+    background-position: 50% 0px;
+}
+.vd1[data-bgpos="3"]{
+    background-position: 102% 0px;
+}
+.vd1[data-bgpos="4"]{
+    background-position: -1% 104%;
+}
+.vd1[data-bgpos="5"]{
+    background-position: 49% 104%;
+}
+.vd1[data-bgpos="6"]{
+    background-position: 101% 104%;
+}
+/* Ví dụ 2 */
+.vd2{
+    padding: 10px;
+    background-color: aliceblue;
+}
+.vd2 >*{
+    display: inline-block;
+    width: auto;
+    padding: 5px;
+    margin: 5px;
+    background-color: var(--accent-color);
+    color: #fff;
+}
+/* Ví dụ 3 */
+.vd3{
+    display: inline-block;
+    padding: 5px;
+    background-color: var(--accent-color);
+    color: #fff;
+}

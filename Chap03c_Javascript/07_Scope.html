@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script src="07a.js"></script>
+    <script src="07b.js"></script>
+</head>
+<body>
+<h1>Scope (phạm vi) trong Javascript</h1>
+<p>Scope quy định khả năng truy cập của biến trong mã nguồn Javascript, có 3 loại scope:</p>
+<ul>
+    <li>Block scope: các dòng lệnh bên trong cặp dấu <code>{}</code></li>
+    <li>Function scope: các dòng lệnh bên trong khai báo hàm</li>
+    <li>Global scope: phạm vi toàn bộ trang web.</li>
+</ul>
+<hr>
+<h2>Block scope</h2>
+<pre><code>//let
+let x = 2;
+{
+    let x = 3;
+    console.log(x);//3
+}
+console.log(x);//2
+
+//const
+const x = 2;
+{
+    const x = 3;
+    console.log(x);//3
+}
+console.log(x);//2
+
+//var (không hỗ trợ block scope)
+var x = 2;
+{
+    var x = 3;
+    console.log(x);//3
+}
+console.log(x);//3
+</code></pre>
+<hr>
+<h2>Function scope</h2>
+<pre><code>
+let x = 1;
+let y = 1;
+function fx(){
+    console.log("fx:Giá trị x bên ngoài: " + x);//1
+}
+function fy(){
+    let y = 3;
+    console.log("fy:Giá trị y bên trong: " + y);//3
+}
+function fy2(y){
+    console.log("fy2:Giá trị y tham số hàm: " + ++y);
+}
+function fy3(){
+    console.log("fy3:Giá trị y bên ngoài: " + y);
+    y=5;
+    console.log("fy3:Giá trị y bên ngoài: " + y);
+}
+fx();//1
+fy();//3
+fy2(y);//2
+fy3();//lúc đầu là 1, lúc sau là 5
+console.log("Giá trị y bên ngoài: " + y);//5
+</code></pre>
+<hr>
+<h2>Global scope</h2>
+<pre><code>//nội dung tập tin script1.js
+let a = 1;
+
+//nội dung tập tin script2.js
+let b = 2;
+
+//nội dung tập tin script3.js
+console.log(a + b);//3
+</code></pre>
+</body>
+</html>

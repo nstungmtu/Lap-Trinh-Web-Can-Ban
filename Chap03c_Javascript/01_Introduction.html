@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01. Giới thiệu Javascript</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+</head>
+<body>
+    <h1>Giới thiệu về Javascript</h1>
+    <p>
+        <b>Javascript (JS)</b> là ngôn ngữ lập trình dạng thông dịch (dịch lúc thực thi). Mặc dù được biết đến là ngôn ngữ kịch bản cho các trang web, hiện nay Javascript trở thành ngôn ngữ lập trình thông dụng nhất do còn được sử dụng trên các nền tảng không phải trình duyệt, đặc biệt Node.js, một nền tảng máy lập trình chủ web và ứng dụng đa nền tảng.
+    </p>
+    <p>
+        Javascript cho phép bạn thực hiện các chức năng phức tạp trên các trang web, thông dụng nhất bao gồm: kiểm tra dữ liệu nhập trên form (form validation); thay đổi nội dung trang web; thay đổi CSS; hiển thị thông báo; đồ họa 2D/3D...
+    </p>
+    <hr>
+    <h2>Một số chức năng chính của Javascript</h2>
+    <article>
+        <h3>Thay đổi thuộc tính của phần tử trong trang web</h3>
+        <div>
+<pre><code>
+function changeBulbColor(){
+    document.getElementById("vd1").
+    setAttribute("data-bgpos", Math.floor(Math.random()*6));
+}
+</code></pre>
+            <div data-bgpos="1" class="vd1" id="vd1"></div><button onclick="changeBulbColor()">Đổi màu bóng đèn</button>
+            <script>
+                function changeBulbColor(){
+                    document.getElementById("vd1").
+                    setAttribute("data-bgpos", Math.floor(Math.random()*6));
+                }
+            </script>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h3>Thay đổi nội dung của trang web</h3>
+        <div>
+<pre><code>
+function addElement(){
+    var elm = document.createElement("div");
+    var text = document.createTextNode(Date.now());
+    elm.appendChild(text);
+    document.getElementById("vd2").
+    appendChild(elm);
+}
+function removeElement(){
+    var elm = document.getElementById("vd2");
+    elm.removeChild(elm.childNodes[elm.childNodes.length -1]);
+}
+</code></pre>
+            <div class="vd2" id="vd2"></div>
+            <button onclick="addElement()">Thêm phần tử vào trang web</button>
+            <button onclick="removeElement()">Thêm phần tử vào trang web</button>
+            <script>
+                function addElement(){
+                    var elm = document.createElement("div");
+                    var text = document.createTextNode(Date.now());
+                    elm.appendChild(text);
+                    document.getElementById("vd2").
+                    appendChild(elm);
+                }
+                function removeElement(){
+                    var elm = document.getElementById("vd2");
+                    elm.removeChild(elm.childNodes[elm.childNodes.length -1]);
+                }
+            </script>
+        </div>
+    </article>
+    <hr>
+    <article>
+        <h3>Thay đổi CSS của trang web</h3>
+        <div>
+<pre><code>
+function changeColor(){
+    var elm = document.getElementById("vd3");
+    elm.style.backgroundColor = 
+    "rgb("+
+    Math.floor(Math.random()*255)+","+
+    Math.floor(Math.random()*255)+","+
+    Math.floor(Math.random()*255)+")";
+}
+</code></pre>
+            <div class="vd3" id="vd3">Nhấn vào nút kế bên để đổi màu nền của tôi</div>
+            <button onclick="changeColor()">Đổi màu</button>
+            <script>
+                function changeColor(){
+                    var elm = document.getElementById("vd3");
+                    elm.style.backgroundColor = 
+                    "rgb("+
+                    Math.floor(Math.random()*255)+","+
+                    Math.floor(Math.random()*255)+","+
+                    Math.floor(Math.random()*255)+")";
+                }
+            </script>
+        </div>
+    </article>
+</body>
+</html>

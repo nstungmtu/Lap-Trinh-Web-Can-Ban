@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05. Hàm trong Javascript</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../highlight/styles/vs.min.css">
+    <script src="../highlight/highlight.min.js"></script>
+    <script >hljs.highlightAll();</script>
+</head>
+<body>
+    <h1>Hàm trong Javascript</h1>
+    <hr>
+<pre><code>//Cách định nghĩa hàm
+function myFunction1(p1, p2) {
+    return p1 * p2;
+}
+//Hàm chỉ được thực thi khi có lệnh gọi
+let result = myFunction1(10, 2);
+
+//Khai báo hàm bên trong Object
+const user = {
+    firstName: "Dolores",
+    lastName: "Abernathy",
+    getFullName: function(){
+        return this.firstName + " " + this.lastName;
+    } 
+}
+console.log(user.getFullName());//Dolores Abernathy
+
+//arrow function
+const myFunction = (a,b) => a*b;
+console.log(myFunction(2,4));//8
+
+const myFunction = (a,b) => {
+    let c = a*b;
+    return c;
+}
+console.log(myFunction(2,4));//8
+
+</code></pre>
+<hr>
+<h2>Generator function</h2>
+<p>Generator function có thể hiểu đơn giản là một loại hàm mà có khả năng thực thi một phần sau đó thoát ra rồi trở vào thực thi tiếp tại vị trí đã thoát ra trước đó.</p>
+<pre><code>//Hàm thông thường
+function normalFunction(){
+    console.log("Tôi ");
+    console.log("tên ");
+    console.log("Tèo");
+    return null;
+}
+normalFunction();
+//Khi gọi hàm thông thường, các câu lệnh trong hàm
+//được thực thi tuần tự cho đến hết, hoặc gặp lệnh return,
+//hoặc báo lỗi.
+
+//hàm generator
+function* g1(){
+    console.log("Tôi ");
+    yield "Dừng lại lần 1";
+    console.log("tên ");
+    yield "Dừng lại lần 2";
+    console.log("Tèo");
+    yield "Dừng lại lần 3";
+}
+//Hàm generator phải được khởi tạo thông qua lệnh gán
+const g = g1();
+console.log(g.next());
+console.log(g.next());
+console.log(g.next());
+console.log(g.next());
+
+//Truyền tham số vào hàm next()
+function* g2(){
+    let i = 0;
+    while(true){
+        const stop = yield;
+        console.log(++i);
+        if(stop) return i;
+    }
+}
+const g = g2();
+g.next();
+g.next();//1
+g.next(true);//2
+g.next();//Không thực hiện hành động nào
+
+//Sử dụng yield*
+function* g1(){
+    yield "g1.1";
+    yield "g1.2";
+}
+function* g2(){
+    yield "g2.1";
+    yield* g1();
+    yield "g2.2";
+}
+const g = g2();
+while(true){
+    let x = g.next();
+    console.log(x);
+    if(x.done) break;
+}
+console.log([...g]); //['g2.1', 'g1.1', 'g1.2', 'g2.2']
+
+</code></pre>
+</body>
+</html>
