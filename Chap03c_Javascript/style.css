@@ -10,7 +10,7 @@ body{
     padding: 10px;
     margin: 0px auto;
 }
-code{
+p code{
     background-color: #eee;
     color: var(--accent-color);
 }

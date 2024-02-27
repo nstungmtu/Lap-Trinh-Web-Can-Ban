@@ -39,6 +39,33 @@ const myFunction = (a,b) => {
 }
 console.log(myFunction(2,4));//8
 
+//Sử dụng biến arguments để truy cập tham số của Hàm
+function myFunction(){
+    console.log(arguments);
+}
+myFunction("Hello!","my", "name", "is", "Dave.");
+
+
+//Sử dụng object để truyền tham số cho hàm
+function myFunc(options){
+    //Khai báo giá trị mặc định cho các tham số
+    let _options = {
+        firstName:"",
+        lastName:"",
+        age:-1
+    }
+    console.log(typeof(options));
+    if(options!= undefined && typeof(options) == 'object'){
+        for(let key in _options){
+            if(options.hasOwnProperty(key)){
+                _options[key] = options[key];
+            }
+        }
+    }
+    console.log(_options);
+}
+myFunc({firstName: 'nono', lastName: 'yeye', age:'22'});
+
 </code></pre>
 <hr>
 <h2>Generator function</h2>

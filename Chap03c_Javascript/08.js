@@ -13,6 +13,7 @@ class Person{
     get firstName(){
         return this.#firstName;
     }
+    //setter
     set firstName(value){
         if(value == undefined || typeof(value) !="string") throw new TypeError("Tên không hợp lệ");
         this.#firstName = value;

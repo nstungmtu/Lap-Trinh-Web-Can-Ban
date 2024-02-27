@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>01. Giới thiệu Javascript</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="../highlight/styles/vs.css">
-    <script src="../highlight/highlight.min.js"></script>
-    <script >hljs.highlightAll();</script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../highlight/styles/vs.css">
+    <script type="text/javascript" src="../highlight/highlight.min.js"></script>
+    <script type="text/javascript">hljs.highlightAll();</script>
 </head>
 <body>
     <h1>Giới thiệu về Javascript</h1>
@@ -56,7 +56,7 @@ function removeElement(){
 </code></pre>
             <div class="vd2" id="vd2"></div>
             <button onclick="addElement()">Thêm phần tử vào trang web</button>
-            <button onclick="removeElement()">Thêm phần tử vào trang web</button>
+            <button onclick="removeElement()">Xóa phần tử khỏi trang web</button>
             <script>
                 function addElement(){
                     var elm = document.createElement("div");
@@ -98,6 +98,76 @@ function changeColor(){
                     Math.floor(Math.random()*255)+")";
                 }
             </script>
+        </div>
+    </article>
+    <article>
+        <h3>Đồ họa 2D/3D</h3>
+        <div>
+            <canvas id="2dCanvas" width="300px" height="300px" style="background-color: black;"></canvas>
+<script>
+/*Source: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations*/
+const sun = new Image();
+const moon = new Image();
+const earth = new Image();
+const ctx = document.getElementById("2dCanvas").getContext("2d");
+
+function init() {
+    sun.src = "img/sun.png";
+    moon.src = "img/moon.png";
+    earth.src = "img/earth.png";
+    window.requestAnimationFrame(draw);
+}
+
+function draw(){
+    const time = new Date();
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.clearRect(0, 0, 300, 300); // clear canvas
+    ctx.fillStyle = "rgb(0 0 0 / 40%)";
+    ctx.strokeStyle = "rgb(0 153 255 / 40%)";
+    ctx.lineWidth = 2;
+    ctx.save();
+    ctx.translate(150, 150);
+
+    // Earth
+    ctx.rotate(
+        ((2 * Math.PI) / 60) * time.getSeconds() +
+        ((2 * Math.PI) / 60000) * time.getMilliseconds(),
+    );
+    ctx.translate(105, 0);
+    ctx.fillRect(0, -15, 90, 30); // Shadow
+    ctx.save();
+
+    ctx.rotate(
+        ((Math.PI)) * time.getSeconds() +
+        ((Math.PI) / 1000) * time.getMilliseconds(),
+    );
+    ctx.drawImage(earth, -15, -15, 30, 30);
+    ctx.restore();
+
+    // Moon
+    ctx.save();
+    ctx.rotate(
+        ((2 * Math.PI) / 5) * time.getSeconds() +
+        ((2 * Math.PI) / 5000) * time.getMilliseconds(),
+    );
+    ctx.translate(0, 28.5);
+    ctx.drawImage(moon, 0, 0, 15, 15);
+    ctx.restore();
+
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.arc(150, 150, 105, 0, Math.PI * 2, false); // Earth orbit
+    ctx.stroke();
+
+    ctx.drawImage(sun, 100, 100, 100, 100);
+
+    window.requestAnimationFrame(draw);
+}
+
+init();
+
+</script>
         </div>
     </article>
 </body>
